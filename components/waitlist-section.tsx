@@ -11,18 +11,45 @@ export function WaitlistSection() {
   const [email, setEmail] = useState("")
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("")
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (email) {
       setLoading(true)
-      // Simulate API call
-      setTimeout(() => {
-        console.log("Email submitted:", email)
-        setSubmitted(true)
+      setErrorMessage("")
+      
+      try {
+        const response = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }),
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+          // Track the conversion if analytics is available
+          if (typeof window !== 'undefined' && window.gtag) {
+            window.gtag('event', 'sign_up', {
+              'event_category': 'engagement',
+              'event_label': 'waitlist'
+            });
+          }
+          
+          setSubmitted(true)
+          setEmail("")
+        } else {
+          setErrorMessage(data.error || "Something went wrong. Please try again.")
+        }
+      } catch (error) {
+        console.error("Error submitting email:", error)
+        setErrorMessage("An error occurred. Please try again later.")
+      } finally {
         setLoading(false)
-        setEmail("")
-      }, 1000)
+      }
     }
   }
 
@@ -91,6 +118,10 @@ export function WaitlistSection() {
                   )}
                 </Button>
               </div>
+
+              {errorMessage && (
+                <p className="mt-3 text-red-400 text-sm">{errorMessage}</p>
+              )}
 
               <p className="mt-3 text-gray-400 text-sm">We respect your privacy. No spam, ever.</p>
             </form>

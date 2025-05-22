@@ -1,8 +1,12 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { Inter } from 'next/font/google'
+import GoogleAnalytics from '@/components/google-analytics'
 
 const inter = Inter({ subsets: ['latin'] })
+
+// Google Analytics Measurement ID - would typically come from environment variables
+const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-EXAMPLE123456'
 
 export const metadata: Metadata = {
   title: 'SERP Strategist | AI Content Strategy for Search Dominance',
@@ -23,7 +27,11 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`${inter.className} antialiased`}>
+        {/* Google Analytics */}
+        <GoogleAnalytics measurementId={GA_MEASUREMENT_ID} />
+        {children}
+      </body>
     </html>
   )
 }
