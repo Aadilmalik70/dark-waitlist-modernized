@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getConnection, formatBlogPost } from '../../../lib/blog-db';
+import { getConnection, formatBlogPost } from '../../../../lib/blog-db';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query;
