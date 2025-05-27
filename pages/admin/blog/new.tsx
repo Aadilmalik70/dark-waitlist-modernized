@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import BlogPostForm from '../../../components/blog/BlogPostForm';
+import BlogPostForm from '../../../../components/blog/BlogPostForm';
 
 export default function NewPostPage() {
   const router = useRouter();
