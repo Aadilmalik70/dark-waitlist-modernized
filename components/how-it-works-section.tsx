@@ -164,22 +164,22 @@ export function HowItWorksSection() {
 const steps = [
   {
     title: "Enter Your Target Keyword",
-    description: "Start by entering the primary keyword you want to rank for. Our AI will analyze the current SERP landscape and competition.",
+    description: "Input the keyword you want to rank for, and our AI starts analyzing top-ranking content.",
     icon: <Search className="w-8 h-8 text-purple-400" />
   },
   {
     title: "Get Your Content Blueprint",
-    description: "Receive a comprehensive content blueprint with topics, headings, questions, and SERP feature opportunities.",
+    description: "Receive a detailed blueprint outlining the structure, topics, and keywords for your article.",
     icon: <FileText className="w-8 h-8 text-blue-400" />
   },
   {
     title: "Create Your Content",
-    description: "Use the blueprint to create your content, either with your team or with our AI-assisted writing tools.",
+    description: "Write your article following the blueprint, ensuring it's optimized for SEO from the start.",
     icon: <Upload className="w-8 h-8 text-cyan-400" />
   },
   {
     title: "Optimize & Track Results",
-    description: "Fine-tune your content with our optimization suggestions, then publish and watch your rankings improve over time.",
+    description: "Use our tools to fine-tune your content and track its performance over time. See real results as your rankings improve.",
     icon: <BarChart3 className="w-8 h-8 text-indigo-400" />
   }
 ]

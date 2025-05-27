@@ -198,16 +198,16 @@ function TestimonialCard({ quote, name, role, result }: TestimonialCardProps) {
 
 const testimonials = [
   {
-    quote: "The content blueprints are incredibly detailed. We've cut our content planning time in half and our articles are ranking higher than ever before.",
+    quote: "Since using SERP Strategist, our organic traffic has increased by 137% in just 3 months. The blueprints are incredibly accurate and have saved us countless hours of research.",
     name: "Sarah Johnson",
     role: "Content Manager, TechStart Inc.",
     result: "Increased organic traffic by 137% in 3 months",
     image: "/placeholder-user.jpg"
   },
   {
-    quote: "As an SEO specialist, I've tried every tool out there. This is the first one that actually helps bridge the gap between SEO data and actionable content strategy.",
-    name: "Michael Chen",
-    role: "SEO Specialist, Digital Growth Agency",
+    quote: "Finally, a tool that takes the guesswork out of content creation. SERP Strategist has helped us dominate our niche with data-driven strategies.",
+    name: "John Doe",
+    role: "SEO Specialist, MarketingPros",
     result: "Doubled client conversion rates with optimized content",
     image: "/placeholder-user.jpg"
   },

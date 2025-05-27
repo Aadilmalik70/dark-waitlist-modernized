@@ -80,8 +80,7 @@ export function WaitlistSection() {
           </h2>
 
           <p className="text-gray-300 max-w-2xl text-lg mb-8">
-            Be among the first to access SERPStrategist and transform how you create content that ranks. Early adopters
-            receive exclusive benefits and special launch pricing.
+            Be one of the first to experience SERP Strategist. Join the waitlist now and get 30% off at launch! Limited spots available for early access.
           </p>
 
           {!submitted ? (
@@ -112,7 +111,7 @@ export function WaitlistSection() {
                     </div>
                   ) : (
                     <>
-                      <span className="mr-2">Join Waitlist</span>
+                      <span className="mr-2">Join Now</span>
                       <ArrowRight className="w-5 h-5" />
                     </>
                   )}
@@ -124,6 +123,7 @@ export function WaitlistSection() {
               )}
 
               <p className="mt-3 text-gray-400 text-sm">We respect your privacy. No spam, ever.</p>
+              <p className="mt-1 text-gray-400 text-sm">After joining, you'll receive a confirmation email with more details about the launch and how to claim your discount.</p>
             </form>
           ) : (
             <div className="w-full max-w-md bg-gray-900/50 border border-gray-800 rounded-xl p-8 flex flex-col items-center transform transition-all duration-500 hover:border-green-500/30 hover:shadow-lg hover:shadow-green-900/10">
@@ -133,6 +133,9 @@ export function WaitlistSection() {
               <h3 className="text-2xl font-semibold mb-2">You're on the list!</h3>
               <p className="text-gray-300 text-center">
                 Thank you for joining our waitlist. We'll notify you when early access is available.
+              </p>
+              <p className="text-gray-400 text-sm mt-4">
+                Check your email for a confirmation message with details about the launch and how to claim your 30% discount.
               </p>
             </div>
           )}

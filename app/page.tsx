@@ -6,6 +6,7 @@ import { FeaturesSection } from "@/components/features-section"
 import { HowItWorksSection } from "@/components/how-it-works-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { PricingSection } from "@/components/pricing-section"
+import { FaqSection } from "@/components/faq-section"
 import { ScrollToSection } from "@/components/scroll-to-section"
 
 export default function Home() {
@@ -19,6 +20,7 @@ export default function Home() {
         <HowItWorksSection />
         <TestimonialsSection />
         <PricingSection />
+        <FaqSection />
         <WaitlistSection />
       </main>
       <Footer />

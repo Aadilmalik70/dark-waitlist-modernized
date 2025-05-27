@@ -46,10 +46,9 @@ export function FeaturesSection() {
               <div className="w-16 h-16 bg-purple-900/30 rounded-xl flex items-center justify-center mb-6">
                 <FileText className="w-8 h-8 text-purple-400" />
               </div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4 text-white">AI-Generated Content Blueprints</h3>
+              <h3 className="text-2xl md:text-3xl font-bold mb-4 text-white">Get the Exact Blueprint for Top-Ranking Content</h3>
               <p className="text-gray-300 mb-6">
-                Get detailed, data-driven content outlines based on what's already ranking for your target keywords. 
-                Know exactly what topics, headings, and questions to include for maximum search visibility.
+                Our advanced AI analyzes the top-performing content in your niche and generates a detailed blueprint, telling you exactly what topics to cover, how to structure your article, and which keywords to target. No more guessing—create content that's proven to rank.
               </p>
               <ul className="space-y-3">
                 {[
@@ -160,27 +159,27 @@ function FeatureCard({ icon, title, description, delay }: FeatureCardProps) {
 const features = [
   {
     icon: <Search className="w-6 h-6 text-blue-400" />,
-    title: "Competitor Content Dissection",
-    description: "Analyze what's working for top-ranking content in your niche. Identify patterns, gaps, and opportunities to create something better."
+    title: "Learn from the Best in Your Industry",
+    description: "See what's working for your top competitors. Our tool dissects their content, revealing their strategies, keywords, and hidden gaps. Use these insights to craft content that's better than theirs and climbs the rankings faster."
   },
   {
     icon: <Shield className="w-6 h-6 text-cyan-400" />,
-    title: "Intent-Matched Format Recommendations",
-    description: "Create the right type of content for each keyword. Our AI identifies search intent and recommends the optimal content format."
+    title: "Match Your Content to Search Intent",
+    description: "Understand the search intent behind your target keywords and get recommendations on the best format—blog post, listicle, how-to guide, etc. Ensure your content meets user expectations and ranks higher on Google."
   },
   {
     icon: <Zap className="w-6 h-6 text-purple-400" />,
-    title: "SERP Feature Optimization",
-    description: "Capture valuable SERP real estate with targeted optimization for featured snippets, People Also Ask boxes, and other SERP features."
+    title: "Optimize for SERP Features",
+    description: "Go beyond just ranking on the first page. Our tool helps you optimize for SERP features like featured snippets, knowledge panels, and more, driving more traffic and visibility."
   },
   {
     icon: <HelpCircle className="w-6 h-6 text-blue-400" />,
-    title: "Question-to-Content Mapping",
-    description: "Never miss a relevant question your audience is asking. Our AI identifies and maps all related questions to ensure comprehensive content."
+    title: "Answer Every User Question",
+    description: "Identify the most common questions related to your topic and ensure your content addresses them all. This comprehensive approach keeps users on your page longer, boosting engagement and rankings."
   },
   {
     icon: <BarChart3 className="w-6 h-6 text-cyan-400" />,
-    title: "Predictive Content Performance",
-    description: "Know how your content will perform before you publish. Our AI predicts ranking potential and provides actionable recommendations."
+    title: "Know Your Content's Potential Before Publishing",
+    description: "Our AI predicts how well your content will perform based on current SEO trends and competition. Get actionable recommendations to refine your content before it goes live, ensuring maximum impact."
   }
 ]

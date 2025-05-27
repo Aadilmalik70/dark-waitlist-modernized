@@ -23,51 +23,55 @@ export function PricingSection() {
           <PricingCard
             name="Starter"
             description="Perfect for individuals and small teams"
-            price="$49"
+            price="$X"
             period="/month"
             features={[
-              "10 Content Blueprints/month",
-              "Basic SERP Analysis",
+              "AI-Generated Content Blueprints",
+              "Basic Competitor Analysis",
               "Content Format Recommendations",
               "Question Mapping",
               "1 User",
               "Email Support",
             ]}
             isPopular={false}
+            ctaText="Choose Starter"
           />
 
           <PricingCard
             name="Professional"
             description="For growing content teams"
-            price="$99"
+            price="$Y"
             period="/month"
             features={[
-              "30 Content Blueprints/month",
+              "Everything in Starter",
               "Advanced SERP Analysis",
               "Competitor Content Dissection",
               "SERP Feature Optimization",
-              "Predictive Performance",
+              "Predictive Content Performance",
               "3 Users",
               "Priority Support",
             ]}
             isPopular={true}
+            ctaText="Choose Professional"
           />
 
           <PricingCard
             name="Agency"
             description="For agencies and large teams"
-            price="$199"
+            price="$Z"
             period="/month"
             features={[
-              "100 Content Blueprints/month",
-              "All Professional Features",
+              "Everything in Professional",
+              "Unlimited Blueprints",
               "White Label Reports",
+              "Team Collaboration Tools",
               "API Access",
               "10 Users",
               "Dedicated Account Manager",
               "Custom Integrations",
             ]}
             isPopular={false}
+            ctaText="Choose Agency"
           />
         </div>
       </div>
@@ -82,9 +86,10 @@ interface PricingCardProps {
   period: string
   features: string[]
   isPopular: boolean
+  ctaText: string
 }
 
-function PricingCard({ name, description, price, period, features, isPopular }: PricingCardProps) {
+function PricingCard({ name, description, price, period, features, isPopular, ctaText }: PricingCardProps) {
   return (
     <Card
       className={`bg-gray-900/50 backdrop-blur-sm rounded-xl overflow-hidden transition-all duration-300 hover:translate-y-[-4px] ${
@@ -93,7 +98,7 @@ function PricingCard({ name, description, price, period, features, isPopular }: 
     >
       {isPopular && (
         <div className="bg-gradient-to-r from-purple-600 to-blue-600 text-white text-center text-sm font-medium py-1">
-          Most Popular
+          Recommended
         </div>
       )}
 
@@ -123,7 +128,7 @@ function PricingCard({ name, description, price, period, features, isPopular }: 
                 : "bg-gray-800 hover:bg-gray-700 text-white"
             }`}
           >
-            Join Waitlist
+            {ctaText}
           </Button>
         </a>
       </div>
