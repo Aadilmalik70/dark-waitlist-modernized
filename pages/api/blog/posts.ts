@@ -46,12 +46,13 @@ async function getPosts(req: NextApiRequest, res: NextApiResponse) {
     const total = (countResult as any)[0].total;
     
     // Get posts with pagination
+    // Use template literals for LIMIT and OFFSET to avoid parameterization issues
     const [posts] = await connection.execute(
       `SELECT * FROM blog_posts 
        WHERE status = ? 
        ORDER BY published_at DESC, created_at DESC 
-       LIMIT ? OFFSET ?`,
-      [status, limit, offset]
+       LIMIT ${parseInt(limit.toString())} OFFSET ${parseInt(offset.toString())}`,
+      [status]
     );
     
     // Format posts for API response
