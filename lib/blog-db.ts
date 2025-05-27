@@ -13,10 +13,25 @@ const dbConfig = {
 // Initialize database connection
 export async function getConnection() {
   try {
+    console.log('Attempting to connect to database with config:', {
+      host: dbConfig.host,
+      user: dbConfig.user,
+      database: dbConfig.database,
+      // Not logging password for security reasons
+    });
+    
     return await mysql.createConnection(dbConfig);
   } catch (error) {
     console.error('Error connecting to database:', error);
-    throw new Error('Database connection failed');
+    // More detailed error message with troubleshooting guidance
+    const errorMessage = `Database connection failed: ${error.message}. 
+    Please check:
+    1. Database credentials in environment variables
+    2. Database server is running and accessible
+    3. Network/firewall allows connections from this service
+    4. SSL requirements for your database provider`;
+    
+    throw new Error(errorMessage);
   }
 }
 
