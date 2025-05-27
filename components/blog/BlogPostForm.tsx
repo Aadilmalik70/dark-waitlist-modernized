@@ -5,6 +5,7 @@ import { Label } from '../ui/label';
 import { Textarea } from '../ui/textarea';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
+import { Badge } from '../ui/badge';
 import RichTextEditor from './RichTextEditor';
 import { Switch } from '../ui/switch';
 import { 
