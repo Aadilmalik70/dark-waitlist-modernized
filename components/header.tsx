@@ -45,6 +45,9 @@ export function Header() {
             <a href="#pricing" className="text-gray-300 hover:text-white transition-colors hover:scale-105 transform duration-200">
               Pricing
             </a>
+            <Link href="/blog" className="text-gray-300 hover:text-white transition-colors hover:scale-105 transform duration-200">
+              Blog
+            </Link>
             <a href="#waitlist">
               <Button 
                 variant="outline" 
@@ -94,6 +97,13 @@ export function Header() {
             >
               Pricing
             </a>
+            <Link 
+              href="/blog" 
+              className="text-gray-300 hover:text-white transition-colors py-2 px-4 hover:bg-gray-800/50 rounded-lg"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Blog
+            </Link>
             <a 
               href="#waitlist" 
               className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2 px-4 rounded-lg text-center font-medium"
