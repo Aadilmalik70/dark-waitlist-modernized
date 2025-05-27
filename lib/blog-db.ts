@@ -11,7 +11,7 @@ const dbConfig = {
 };
 
 // Initialize database connection
-async function getConnection() {
+export async function getConnection() {
   try {
     return await mysql.createConnection(dbConfig);
   } catch (error) {
