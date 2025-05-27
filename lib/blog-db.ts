@@ -9,7 +9,8 @@ const dbConfig = {
   password: process.env.DB_PASSWORD || '',
   database: process.env.DB_NAME || 'blog_db',
   port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 3306,
-  ca:"-----BEGIN CERTIFICATE-----
+  ssl: process.env.DB_SSL === 'true' ? {
+    ca: `-----BEGIN CERTIFICATE-----
 MIIEQTCCAqmgAwIBAgIUFOTWdbt78chsIIot79QfkDPl/Q8wDQYJKoZIhvcNAQEM
 BQAwOjE4MDYGA1UEAwwvMDNhZjU3MjctNGQ3Mi00OTc5LThlNTQtNDdiZjE3ODY4
 YmE4IFByb2plY3QgQ0EwHhcNMjUwMTE1MTUxODEzWhcNMzUwMTEzMTUxODEzWjA6
@@ -33,9 +34,7 @@ zG2skJPuxtqFxaCZpW9AW73HPxq/nls3WfOIueWQ5GvmD6GIkcFgjMCg42lVlZE6
 8G/V2WkaZ+rDFUd5/mdMyMMQw2M9IoGtrQCMipsp5O+XVLeT+OSUrvsjKkLtmL9e
 3pRwm/nA2qB5BPcoMwRzfRhsPLjfWBHIbhzhpRSsjkPZesCDah0EJwGdCNAbDODR
 0OZw8BXoqELTdjz97o2dnylJWrbDmLKhkQ/7Wuvcv8BcuqE0Ag==
------END CERTIFICATE-----
-",
-  ssl: process.env.DB_SSL === 'true' ? {
+-----END CERTIFICATE-----`,
     rejectUnauthorized: true
   } : undefined
 };
