@@ -34,7 +34,7 @@ zG2skJPuxtqFxaCZpW9AW73HPxq/nls3WfOIueWQ5GvmD6GIkcFgjMCg42lVlZE6
 3pRwm/nA2qB5BPcoMwRzfRhsPLjfWBHIbhzhpRSsjkPZesCDah0EJwGdCNAbDODR
 0OZw8BXoqELTdjz97o2dnylJWrbDmLKhkQ/7Wuvcv8BcuqE0Ag==
 -----END CERTIFICATE-----
-"
+",
   ssl: process.env.DB_SSL === 'true' ? {
     rejectUnauthorized: true
   } : undefined
