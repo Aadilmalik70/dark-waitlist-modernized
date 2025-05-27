@@ -26,7 +26,7 @@ import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Link from '@tiptap/extension-link';
 import Placeholder from '@tiptap/extension-placeholder';
-import Image as TiptapImage from '@tiptap/extension-image';
+import TiptapImage from '@tiptap/extension-image';
 
 const MenuBar = ({ editor }) => {
   if (!editor) {
