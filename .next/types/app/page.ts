@@ -1,4 +1,4 @@
-// File: /home/ubuntu/dark-waitlist-modernized/app/page.tsx
+// File: C:\Users\DELL 2\Desktop\Projects\dark-waitlist-modernized\app\page.tsx
 import * as entry from '../../../app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

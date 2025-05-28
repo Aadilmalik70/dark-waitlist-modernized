@@ -2,5 +2,9 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/admin/blog": "pages/admin/blog.js",
+  "/admin/blog/new": "pages/admin/blog/new.js",
+  "/blog/[slug]": "pages/blog/[slug].js",
+  "/api/blog/posts/[id]": "pages/api/blog/posts/[id].js",
   "/blog": "pages/blog.js"
 }

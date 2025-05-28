@@ -80,6 +80,8 @@ async function createPost(req: NextApiRequest, res: NextApiResponse) {
   const connection = await getConnection();
   
   try {
+    console.log('Received post data:', req.body);
+    
     const { 
       title, 
       content, 
@@ -87,12 +89,38 @@ async function createPost(req: NextApiRequest, res: NextApiResponse) {
       featuredImage, 
       status = 'draft',
       author = { name: 'Admin' },
-      seo = {}
+      seo = {},
+      categories = [],
+      tags = []
     } = req.body;
     
     // Validate required fields
-    if (!title) {
+    if (!title || title.trim() === '') {
+      console.log('Validation failed: Title is required');
       return res.status(400).json({ error: 'Title is required' });
+    }
+    
+    console.log('Creating post with title:', title);
+    console.log('Author data:', author);
+    console.log('SEO data:', seo);
+    
+    // Validate and process featured image
+    let processedFeaturedImage = null;
+    if (featuredImage) {
+      if (featuredImage.startsWith('data:image/')) {
+        // If it's a base64 image, we'll store it but warn about size
+        if (featuredImage.length > 100000) { // ~100KB limit for base64
+          console.warn('Base64 image is very large. Consider using a URL instead.');
+        }
+        processedFeaturedImage = featuredImage;
+      } else if (featuredImage.startsWith('http')) {
+        // If it's a URL, store it directly
+        processedFeaturedImage = featuredImage;
+      } else {
+        // Invalid format, skip it
+        console.warn('Invalid featured image format. Must be base64 or URL.');
+        processedFeaturedImage = null;
+      }
     }
     
     const id = uuidv4();
@@ -100,7 +128,7 @@ async function createPost(req: NextApiRequest, res: NextApiResponse) {
     const now = new Date();
     const publishedAt = status === 'published' ? now : null;
     
-    // Insert post into database
+    // Insert post into database (ensure no undefined values)
     await connection.execute(
       `INSERT INTO blog_posts (
         id, title, slug, content, excerpt, featured_image, 
@@ -108,11 +136,25 @@ async function createPost(req: NextApiRequest, res: NextApiResponse) {
         updated_at, created_at, seo_title, seo_description, seo_keywords
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
-        id, title, slug, content, excerpt, featuredImage,
-        author.name, author.avatar, status, publishedAt,
-        now, now, seo.title, seo.description, seo.keywords
+        id, 
+        title, 
+        slug, 
+        content || null, 
+        excerpt || null, 
+        processedFeaturedImage,
+        author.name || 'Admin', 
+        author.avatar || null, 
+        status, 
+        publishedAt,
+        now, 
+        now, 
+        seo.title || null, 
+        seo.description || null, 
+        seo.keywords || null
       ]
     );
+    
+    console.log('Post inserted successfully with ID:', id);
     
     // Get the created post
     const [posts] = await connection.execute(
@@ -121,8 +163,12 @@ async function createPost(req: NextApiRequest, res: NextApiResponse) {
     );
     
     const post = (posts as any[])[0];
+    console.log('Retrieved post from database:', post);
     
-    return res.status(201).json(formatBlogPost(post));
+    const formattedPost = formatBlogPost(post);
+    console.log('Formatted post for response:', formattedPost);
+    
+    return res.status(201).json(formattedPost);
   } catch (error) {
     console.error('Error creating post:', error);
     return res.status(500).json({ error: 'Failed to create post' });

@@ -77,7 +77,7 @@ export async function initializeDatabase() {
         slug VARCHAR(255) NOT NULL UNIQUE,
         content TEXT,
         excerpt TEXT,
-        featured_image VARCHAR(255),
+        featured_image TEXT,
         author_name VARCHAR(100),
         author_avatar VARCHAR(255),
         status ENUM('draft', 'published') DEFAULT 'draft',
@@ -90,6 +90,18 @@ export async function initializeDatabase() {
         seo_keywords TEXT
       )
     `);
+    
+    // Update existing table to support longer featured_image (migration)
+    try {
+      await connection.execute(`
+        ALTER TABLE blog_posts 
+        MODIFY COLUMN featured_image TEXT
+      `);
+      console.log('Successfully updated featured_image column to TEXT');
+    } catch (alterError) {
+      // This will fail if column doesn't exist or is already TEXT, which is fine
+      console.log('Featured image column migration skipped (probably already correct)');
+    }
     
     // Create categories table
     await connection.execute(`

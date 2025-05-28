@@ -114,7 +114,7 @@ export default function SinglePostPage({ initialPost }: SinglePostPageProps) {
               <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-6">
                 <div className="flex items-center">
                   <User className="mr-1 h-4 w-4" />
-                  <span>{post.author.name}</span>
+                  <span>{post?.author?.name}</span>
                 </div>
                 
                 {formattedDate && (
