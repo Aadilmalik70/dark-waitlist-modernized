@@ -1,4 +1,6 @@
-import React from 'react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import { Button } from '../ui/button';
 import { 
   Bold, 
@@ -228,6 +230,12 @@ const MenuBar = ({ editor }) => {
 };
 
 const RichTextEditor = ({ content, onChange }) => {
+  const [isMounted, setIsMounted] = useState(false);
+  
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -241,7 +249,26 @@ const RichTextEditor = ({ content, onChange }) => {
     onUpdate: ({ editor }) => {
       onChange(editor.getHTML());
     },
+    editorProps: {
+      attributes: {
+        class: 'min-h-[400px] focus:outline-none',
+      },
+    },
+    // Explicitly set this to false to avoid SSR hydration mismatches
+    immediatelyRender: false,
   });
+
+  // Show a placeholder during SSR or before hydration
+  if (!isMounted) {
+    return (
+      <div className="border border-gray-700 rounded-md overflow-hidden">
+        <div className="border border-gray-700 rounded-t-md p-2 mb-0 flex flex-wrap gap-1 bg-gray-800/50 backdrop-blur-sm h-[53px]"></div>
+        <div className="p-4 min-h-[400px] bg-gray-800/30 prose prose-invert max-w-none">
+          <div className="min-h-[400px] focus:outline-none"></div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <motion.div 
@@ -252,7 +279,7 @@ const RichTextEditor = ({ content, onChange }) => {
     >
       <MenuBar editor={editor} />
       <div className="p-4 min-h-[400px] bg-gray-800/30 prose prose-invert max-w-none">
-        <EditorContent editor={editor} className="min-h-[400px] focus:outline-none" />
+        <EditorContent editor={editor} />
       </div>
     </motion.div>
   );
