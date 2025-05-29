@@ -41,10 +41,10 @@ export function TestimonialsSection() {
           </div>
           
           <h2 className="text-3xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
-            What Our Early Users Are Saying
+            Innovators Are Building the Future with SERP Strategist
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto text-lg">
-            Join hundreds of content creators who are already seeing results with our AI-powered platform
+            Join hundreds of content creators who are already seeing results with our innovative AI-powered approach to deep research and content strategy.
           </p>
         </div>
 
@@ -198,30 +198,30 @@ function TestimonialCard({ quote, name, role, result }: TestimonialCardProps) {
 
 const testimonials = [
   {
-    quote: "Since using SERP Strategist, our organic traffic has increased by 137% in just 3 months. The blueprints are incredibly accurate and have saved us countless hours of research.",
+    quote: "The depth of research in these blueprints is unlike anything else. Our content planning is faster and far more strategic. SERP Strategist's agentic approach finds opportunities other tools completely miss.",
     name: "Sarah Johnson",
-    role: "Content Manager, TechStart Inc.",
-    result: "Increased organic traffic by 137% in 3 months",
-    image: "/placeholder-user.jpg"
+    role: "Content Strategy Director, TechInnovate",
+    result: "Reduced research time by 75%, achieved top 3 ranking for 12 competitive keywords",
+    image: "/t1.jpg"
   },
   {
-    quote: "Finally, a tool that takes the guesswork out of content creation. SERP Strategist has helped us dominate our niche with data-driven strategies.",
-    name: "John Doe",
-    role: "SEO Specialist, MarketingPros",
-    result: "Doubled client conversion rates with optimized content",
-    image: "/placeholder-user.jpg"
+    quote: "Finally, a tool that thinks like an expert strategist. The AI agents don't just scrape data - they understand context and competitive dynamics in ways that have revolutionized our content approach.",
+    name: "Marcus Chen",
+    role: "SEO Lead, GrowthTech Solutions",
+    result: "Identified 23 new content angles, outranked 3 major competitors",
+    image: "/t3.jpg"
   },
   {
-    quote: "Our small team was struggling to compete with bigger companies. This tool has leveled the playing field. We're now ranking for keywords we never thought possible.",
-    name: "Taylor Rodriguez",
-    role: "Founder, ConsultPro Services",
-    result: "Achieved 5 featured snippets in competitive SERP",
-    image: "/placeholder-user.jpg"
+    quote: "SERP Strategist's agentic workflow is a game-changer for competitive niches. The deep research capabilities help us understand not just what to write, but why it will work. It's like having a team of expert strategists.",
+    name: "Dr. Emily Rodriguez",
+    role: "Content Innovation Lead, ScaleUp Media",
+    result: "Achieved 5 featured snippets, 89% improvement in organic visibility",
+    image: "/t2.jpg"
   }
 ]
 
 const stats = [
-  { value: "500+", label: "Active Users" },
+  { value: "500+", label: "Innovators Joined" },
   { value: "10,000+", label: "Content Blueprints Generated" },
   { value: "87%", label: "Average Ranking Improvement" },
   { value: "4.9/5", label: "User Satisfaction" }

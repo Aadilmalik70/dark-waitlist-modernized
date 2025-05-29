@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { motion } from "framer-motion"
-import { ArrowRight, CheckCircle, Search, FileText, Upload, BarChart3 } from "lucide-react"
+import { ArrowRight, CheckCircle, Search, FileText, Upload, BarChart3, Target, Bot } from "lucide-react"
 
 export function HowItWorksSection() {
   const [activeStep, setActiveStep] = useState(0)
@@ -11,7 +11,7 @@ export function HowItWorksSection() {
   // Auto-advance steps every 3 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % 4)
+      setActiveStep((prev) => (prev + 1) % 3)
     }, 3000)
     
     return () => clearInterval(interval)
@@ -37,10 +37,10 @@ export function HowItWorksSection() {
           </div>
           
           <h2 className="text-3xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
-            How It Works
+            Your Agentic Content Strategy in 3 Steps
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto text-lg">
-            Create content that ranks in just four simple steps with our AI-powered platform
+            Launch your AI agent, receive deep insights, and build winning content.
           </p>
         </div>
 
@@ -52,14 +52,14 @@ export function HowItWorksSection() {
               <motion.div 
                 className="h-full bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500"
                 initial={{ width: "0%" }}
-                animate={{ width: `${(activeStep + 1) * 25}%` }}
+                animate={{ width: `${(activeStep + 1) * 33.33}%` }}
                 transition={{ duration: 0.5 }}
               />
             </div>
             
             {/* Step circles */}
             <div className="flex justify-between relative">
-              {[0, 1, 2, 3].map((step) => (
+              {[0, 1, 2].map((step) => (
                 <div key={step} className="relative">
                   <motion.div
                     className={`w-16 h-16 rounded-full flex items-center justify-center z-10 relative ${
@@ -88,7 +88,7 @@ export function HowItWorksSection() {
           </div>
           
           {/* Step content */}
-          <div className="mt-16 grid grid-cols-4 gap-8">
+          <div className="mt-16 grid grid-cols-3 gap-8">
             {steps.map((step, index) => (
               <motion.div
                 key={index}
@@ -151,7 +151,7 @@ export function HowItWorksSection() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="mr-2">Get Started Today</span>
+              <span className="mr-2">See It In Action</span>
               <ArrowRight className="w-5 h-5 inline-block" />
             </motion.button>
           </a>
@@ -163,23 +163,18 @@ export function HowItWorksSection() {
 
 const steps = [
   {
-    title: "Enter Your Target Keyword",
-    description: "Input the keyword you want to rank for, and our AI starts analyzing top-ranking content.",
-    icon: <Search className="w-8 h-8 text-purple-400" />
+    title: "Define Your Target",
+    description: "Enter your primary keyword or topic. This sets the mission for your dedicated AI research agent.",
+    icon: <Target className="w-8 h-8 text-purple-400" />
   },
   {
-    title: "Get Your Content Blueprint",
-    description: "Receive a detailed blueprint outlining the structure, topics, and keywords for your article.",
-    icon: <FileText className="w-8 h-8 text-blue-400" />
+    title: "Deploy Your AI Agent",
+    description: "Our agent autonomously performs deep SERP analysis, competitor dissection, and audience research, synthesizing vast data into strategic insights.",
+    icon: <Bot className="w-8 h-8 text-blue-400" />
   },
   {
-    title: "Create Your Content",
-    description: "Write your article following the blueprint, ensuring it's optimized for SEO from the start.",
-    icon: <Upload className="w-8 h-8 text-cyan-400" />
-  },
-  {
-    title: "Optimize & Track Results",
-    description: "Use our tools to fine-tune your content and track its performance over time. See real results as your rankings improve.",
-    icon: <BarChart3 className="w-8 h-8 text-indigo-400" />
+    title: "Receive Your Blueprint",
+    description: "Get a comprehensive, actionable content blueprint – your strategic guide to creating content that dominates the SERPs.",
+    icon: <FileText className="w-8 h-8 text-cyan-400" />
   }
 ]

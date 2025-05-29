@@ -10,8 +10,8 @@ const inter = Inter({ subsets: ['latin'] })
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-EXAMPLE123456'
 
 export const metadata: Metadata = {
-  title: 'SERP Strategist | AI Content Strategy for Search Dominance',
-  description: 'Create content that dominates search results with AI-powered content strategy and competitor analysis',
+  title: 'SERP Strategist | Agentic AI Content Blueprints for Search Dominance',
+  description: 'Go beyond keywords with innovative AI agents that perform deep competitive research and generate unparalleled content blueprints to outrank your competition.',
   generator: 'Next.js',
 }
 

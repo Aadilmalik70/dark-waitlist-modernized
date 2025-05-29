@@ -76,11 +76,11 @@ export function WaitlistSection() {
           </div>
 
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-400">
-            Join the Future of Content Strategy
+            Join the Forefront of AI Content Strategy
           </h2>
 
           <p className="text-gray-300 max-w-2xl text-lg mb-8">
-            Be one of the first to experience SERP Strategist. Join the waitlist now and get 30% off at launch! Limited spots available for early access.
+            Be among the first to harness the power of agentic AI for content that dominates. Join the SERP Strategist waitlist today for early access and exclusive launch benefits.
           </p>
 
           {!submitted ? (
@@ -111,7 +111,7 @@ export function WaitlistSection() {
                     </div>
                   ) : (
                     <>
-                      <span className="mr-2">Join Now</span>
+                      <span className="mr-2">Join the Waitlist Now</span>
                       <ArrowRight className="w-5 h-5" />
                     </>
                   )}
@@ -122,7 +122,7 @@ export function WaitlistSection() {
                 <p className="mt-3 text-red-400 text-sm">{errorMessage}</p>
               )}
 
-              <p className="mt-3 text-gray-400 text-sm">We respect your privacy. No spam, ever.</p>
+              <p className="mt-3 text-gray-400 text-sm">We respect your privacy. Be the first to know, no spam ever.</p>
               <p className="mt-1 text-gray-400 text-sm">After joining, you'll receive a confirmation email with more details about the launch and how to claim your discount.</p>
             </form>
           ) : (
@@ -143,7 +143,7 @@ export function WaitlistSection() {
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div className="flex flex-col items-center p-4 bg-gray-900/30 backdrop-blur-sm rounded-xl border border-gray-800 hover:border-purple-500/50 transition-all duration-300">
               <div className="text-2xl font-bold text-purple-400 mb-1">500+</div>
-              <div className="text-gray-400 text-sm">Early Adopters</div>
+              <div className="text-gray-400 text-sm">Innovators Joined</div>
             </div>
             <div className="flex flex-col items-center p-4 bg-gray-900/30 backdrop-blur-sm rounded-xl border border-gray-800 hover:border-blue-500/50 transition-all duration-300">
               <div className="text-2xl font-bold text-blue-400 mb-1">30%</div>

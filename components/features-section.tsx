@@ -1,8 +1,9 @@
 "use client"
 
 import type React from "react"
+import Image from "next/image"
 import { motion } from "framer-motion"
-import { FileText, Search, Shield, Zap, HelpCircle, BarChart3, ArrowRight } from "lucide-react"
+import { FileText, Search, Shield, Zap, HelpCircle, BarChart3, ArrowRight, Brain, Workflow, Rocket } from "lucide-react"
 
 export function FeaturesSection() {
   return (
@@ -25,11 +26,10 @@ export function FeaturesSection() {
           </div>
           
           <h2 className="text-3xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
-            The Smarter Way to Create Content That Ranks
+            Where Deep Research Meets Autonomous Strategy
           </h2>
           <p className="text-gray-300 max-w-3xl mx-auto text-lg">
-            Stop guessing what will rank. Our AI-powered platform gives you the exact blueprint for content that
-            dominates search results.
+            Our innovative AI agents don't just scrape data; they analyze, strategize, and build the foundation for content that wins.
           </p>
         </div>
 
@@ -44,18 +44,17 @@ export function FeaturesSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div>
               <div className="w-16 h-16 bg-purple-900/30 rounded-xl flex items-center justify-center mb-6">
-                <FileText className="w-8 h-8 text-purple-400" />
+                <Brain className="w-8 h-8 text-purple-400" />
               </div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-4 text-white">Get the Exact Blueprint for Top-Ranking Content</h3>
+              <h3 className="text-2xl md:text-3xl font-bold mb-4 text-white">Agentic SERP Analysis & Competitor Dissection</h3>
               <p className="text-gray-300 mb-6">
-                Our advanced AI analyzes the top-performing content in your niche and generates a detailed blueprint, telling you exactly what topics to cover, how to structure your article, and which keywords to target. No more guessing—create content that's proven to rank.
+                Go beyond simple keyword matching. Our AI agents meticulously dissect top-ranking content, identifying underlying strategies, semantic patterns, and hidden opportunities your competitors miss. Understand why they rank, not just what they cover.
               </p>
               <ul className="space-y-3">
                 {[
-                  "Comprehensive topic coverage analysis",
-                  "Semantic keyword mapping",
-                  "SERP feature optimization opportunities",
-                  "Content structure recommendations"
+                  "Deep analysis of competitor content structures & angles",
+                  "Identification of semantic gaps and topic clusters",
+                  "Uncovering nuanced search intent beyond keywords"
                 ].map((item, index) => (
                   <motion.li 
                     key={index}
@@ -75,30 +74,14 @@ export function FeaturesSection() {
                 ))}
               </ul>
             </div>
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-xl blur-xl"></div>
-              <div className="relative bg-gray-900 border border-gray-800 rounded-xl p-6 shadow-xl">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex space-x-2">
-                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                  </div>
-                  <div className="text-xs text-gray-400">Content Blueprint</div>
-                </div>
-                <div className="space-y-3">
-                  <div className="h-6 bg-gray-800 rounded w-3/4"></div>
-                  <div className="h-4 bg-gray-800 rounded w-full"></div>
-                  <div className="h-4 bg-gray-800 rounded w-5/6"></div>
-                  <div className="h-4 bg-gray-800 rounded w-4/5"></div>
-                  <div className="mt-6 h-5 bg-purple-900/50 rounded w-1/2"></div>
-                  <div className="h-4 bg-gray-800 rounded w-full"></div>
-                  <div className="h-4 bg-gray-800 rounded w-3/4"></div>
-                  <div className="mt-6 h-5 bg-purple-900/50 rounded w-1/2"></div>
-                  <div className="h-4 bg-gray-800 rounded w-5/6"></div>
-                  <div className="h-4 bg-gray-800 rounded w-full"></div>
-                </div>
-              </div>
+            <div className="relative" style={{ minHeight: 300 }}>
+              <Image
+                src="/dummy.png"
+                alt="Feature Illustration"
+                fill
+                objectFit="cover"
+                className="rounded-xl"
+              />
             </div>
           </div>
         </motion.div>
@@ -123,7 +106,7 @@ export function FeaturesSection() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="mr-2">Explore All Features</span>
+              <span className="mr-2">Explore Blueprint Examples</span>
               <ArrowRight className="w-5 h-5 inline-block" />
             </motion.button>
           </a>
@@ -158,28 +141,18 @@ function FeatureCard({ icon, title, description, delay }: FeatureCardProps) {
 
 const features = [
   {
-    icon: <Search className="w-6 h-6 text-blue-400" />,
-    title: "Learn from the Best in Your Industry",
-    description: "See what's working for your top competitors. Our tool dissects their content, revealing their strategies, keywords, and hidden gaps. Use these insights to craft content that's better than theirs and climbs the rankings faster."
+    icon: <FileText className="w-6 h-6 text-blue-400" />,
+    title: "Intelligent Content Blueprint Generation",
+    description: "Receive more than just an outline. Get a strategic blueprint crafted by AI agents, detailing optimal structure, headings (H1-H6), key questions to answer, internal linking suggestions, and targeted SERP feature opportunities (Featured Snippets, PAA, etc.)."
   },
   {
-    icon: <Shield className="w-6 h-6 text-cyan-400" />,
-    title: "Match Your Content to Search Intent",
-    description: "Understand the search intent behind your target keywords and get recommendations on the best format—blog post, listicle, how-to guide, etc. Ensure your content meets user expectations and ranks higher on Google."
+    icon: <Workflow className="w-6 h-6 text-purple-400" />,
+    title: "The Agentic Workflow Advantage",
+    description: "SERP Strategist initiates an autonomous research flow, simulating expert analysis at scale. This unique agentic approach ensures your blueprints are based on comprehensive, multi-faceted insights, not just surface-level data points."
   },
   {
-    icon: <Zap className="w-6 h-6 text-purple-400" />,
-    title: "Optimize for SERP Features",
-    description: "Go beyond just ranking on the first page. Our tool helps you optimize for SERP features like featured snippets, knowledge panels, and more, driving more traffic and visibility."
-  },
-  {
-    icon: <HelpCircle className="w-6 h-6 text-blue-400" />,
-    title: "Answer Every User Question",
-    description: "Identify the most common questions related to your topic and ensure your content addresses them all. This comprehensive approach keeps users on your page longer, boosting engagement and rankings."
-  },
-  {
-    icon: <BarChart3 className="w-6 h-6 text-cyan-400" />,
-    title: "Know Your Content's Potential Before Publishing",
-    description: "Our AI predicts how well your content will perform based on current SEO trends and competition. Get actionable recommendations to refine your content before it goes live, ensuring maximum impact."
+    icon: <Rocket className="w-6 h-6 text-cyan-400" />,
+    title: "Foundation for Autonomous Content",
+    description: "Today, master your content blueprints. Tomorrow, leverage the full power of our AI agents for the entire content lifecycle – from deep research to autonomous publishing. SERP Strategist is your first step towards truly agentic content creation."
   }
 ]

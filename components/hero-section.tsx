@@ -23,22 +23,21 @@ export function HeroSection() {
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         <div className="flex flex-col items-center text-center">
           <div className="inline-flex items-center justify-center p-2 bg-purple-900/30 backdrop-blur-sm rounded-full mb-6 animate-fade-in">
-            <span className="px-3 py-1 text-purple-300 text-sm font-medium">AI-Powered Content Strategy</span>
+            <span className="px-3 py-1 text-purple-300 text-sm font-medium">The Future of Content Strategy is Here</span>
           </div>
 
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-400 leading-tight max-w-4xl">
-            Create Content That Dominates Search Results
+            Go Beyond Keywords. Command Your SERPs with Agentic AI Content Blueprints.
           </h1>
 
           <p className="text-gray-300 text-lg md:text-xl max-w-3xl mb-10">
-            The AI Content Strategist that analyzes top-ranking content, creates data-driven blueprints, and helps you
-            outrank your competition with less effort.
+            SERP Strategist employs innovative AI agents to perform deep competitive research, generating unparalleled content blueprints that guide you to outrank the competition and capture search visibility.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
             <a href="#waitlist">
               <Button className="h-14 px-8 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-medium transition-all duration-200 shadow-lg shadow-purple-900/20 hover:shadow-purple-900/40 hover:scale-105 transform">
-                <span className="mr-2">Join the Waitlist</span>
+                <span className="mr-2">Join the Waitlist & Shape the Future</span>
                 <ArrowRight className="w-5 h-5" />
               </Button>
             </a>
@@ -48,7 +47,7 @@ export function HeroSection() {
                 variant="outline"
                 className="h-14 px-8 rounded-xl border-purple-500 text-cyan-400 hover:bg-purple-900/20 hover:text-white hover:scale-105 transform transition-all duration-200"
               >
-                See How It Works
+                See the Agentic Flow
               </Button>
             </a>
           </div>
@@ -57,7 +56,7 @@ export function HeroSection() {
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
             <div className="flex flex-col items-center p-4 bg-gray-900/30 backdrop-blur-sm rounded-xl border border-gray-800 hover:border-purple-500/50 transition-all duration-300">
               <div className="text-2xl font-bold text-purple-400 mb-1">500+</div>
-              <div className="text-gray-400 text-sm">Early Adopters</div>
+              <div className="text-gray-400 text-sm">Innovators Joined</div>
             </div>
             <div className="flex flex-col items-center p-4 bg-gray-900/30 backdrop-blur-sm rounded-xl border border-gray-800 hover:border-blue-500/50 transition-all duration-300">
               <div className="text-2xl font-bold text-blue-400 mb-1">30%</div>
