@@ -4,10 +4,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 // Database connection configuration
 const dbConfig = {
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'root',
+  host: process.env.DB_HOST || 'mysql-1709d68a-aadilmalik96672-d727.c.aivencloud.com',
+  user: process.env.DB_USER || 'avnadmin',
   password: process.env.DB_PASSWORD || '',
-  database: process.env.DB_NAME || 'blog_db',
+  database: process.env.DB_NAME || 'defaultdb',
   port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 3306,
   ssl: process.env.DB_SSL === 'true' ? {
     ca: `-----BEGIN CERTIFICATE-----
@@ -69,9 +69,9 @@ export async function initializeDatabase() {
   const connection = await getConnection();
   
   try {
-    // Create blog_posts table
+    // Create posts table
     await connection.execute(`
-      CREATE TABLE IF NOT EXISTS blog_posts (
+      CREATE TABLE IF NOT EXISTS posts (
         id VARCHAR(36) PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
         slug VARCHAR(255) NOT NULL UNIQUE,
@@ -94,7 +94,7 @@ export async function initializeDatabase() {
     // Update existing table to support longer featured_image (migration)
     try {
       await connection.execute(`
-        ALTER TABLE blog_posts 
+        ALTER TABLE posts 
         MODIFY COLUMN featured_image TEXT
       `);
       console.log('Successfully updated featured_image column to TEXT');
@@ -119,7 +119,7 @@ export async function initializeDatabase() {
         post_id VARCHAR(36) NOT NULL,
         category_id VARCHAR(36) NOT NULL,
         PRIMARY KEY (post_id, category_id),
-        FOREIGN KEY (post_id) REFERENCES blog_posts(id) ON DELETE CASCADE,
+        FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
         FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
       )
     `);
@@ -139,7 +139,7 @@ export async function initializeDatabase() {
         post_id VARCHAR(36) NOT NULL,
         tag_id VARCHAR(36) NOT NULL,
         PRIMARY KEY (post_id, tag_id),
-        FOREIGN KEY (post_id) REFERENCES blog_posts(id) ON DELETE CASCADE,
+        FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE,
         FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE CASCADE
       )
     `);

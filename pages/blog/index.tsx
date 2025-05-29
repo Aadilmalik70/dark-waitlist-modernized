@@ -43,15 +43,14 @@ export default function BlogPage({ initialPosts }: BlogPageProps) {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    if (!initialPosts) {
       fetchPosts();
-    }
   }, [initialPosts]);
 
   const fetchPosts = async () => {
     try {
       setLoading(true);
       const response = await fetch('/api/blog/posts?status=published');
+      console.log(response)
       const data = await response.json();
       setPosts(data.posts || samplePosts);
     } catch (error) {

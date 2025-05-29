@@ -29,7 +29,8 @@ import {
   Target,
   TrendingUp,
   BookOpen,
-  Lightbulb
+  Lightbulb,
+  BarChart3
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -76,13 +77,13 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
   useEffect(() => {
     let score = 0;
     const checks = [
-      { condition: post.title.trim().length > 0, weight: 20 },
-      { condition: post.excerpt.trim().length > 0, weight: 15 },
-      { condition: post.content.trim().length > 100, weight: 25 },
-      { condition: post.featuredImage.length > 0, weight: 15 },
-      { condition: post.categories.length > 0, weight: 10 },
-      { condition: post.seo.title.length > 0, weight: 10 },
-      { condition: post.seo.description.length > 0, weight: 5 }
+      { condition: post.title.trim()?.length > 0, weight: 20 },
+      { condition: post.excerpt.trim()?.length > 0, weight: 15 },
+      { condition: post.content.trim()?.length > 100, weight: 25 },
+      { condition: post.featuredImage?.length > 0, weight: 15 },
+      { condition: post.categories?.length > 0, weight: 10 },
+      { condition: post.seo.title?.length > 0, weight: 10 },
+      { condition: post.seo.description?.length > 0, weight: 5 }
     ];
     
     score = checks.reduce((acc, check) => acc + (check.condition ? check.weight : 0), 0);
@@ -91,7 +92,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
 
   // Calculate word count and read time
   useEffect(() => {
-    const words = post.content.trim().split(/\s+/).filter(word => word.length > 0).length;
+    const words = post.content.trim().split(/\s+/).filter(word => word?.length > 0)?.length;
     setWordCount(words);
     setReadTime(Math.ceil(words / 200)); // Assuming 200 words per minute
   }, [post.content]);
@@ -228,7 +229,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
           </div>
           <div className="flex items-center justify-between">
             <span className="text-gray-400">Content (100+ words)</span>
-            {post.content.trim().length > 100 ? (
+            {post.content.trim()?.length > 100 ? (
               <CheckCircle className="w-4 h-4 text-green-400" />
             ) : (
               <div className="w-4 h-4 rounded-full border-2 border-gray-600" />
@@ -278,14 +279,14 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
             <span className="text-gray-400">SEO Title Length</span>
-            <span className={`${post.seo.title.length > 60 ? 'text-red-400' : post.seo.title.length > 50 ? 'text-yellow-400' : 'text-gray-300'}`}>
-              {post.seo.title.length}/60
+            <span className={`${post?.seo?.title?.length > 60 ? 'text-red-400' : post?.seo?.title?.length > 50 ? 'text-yellow-400' : 'text-gray-300'}`}>
+              {post?.seo?.title?.length}/60
             </span>
           </div>
           <div className="flex justify-between text-sm">
             <span className="text-gray-400">Meta Description</span>
-            <span className={`${post.seo.description.length > 160 ? 'text-red-400' : post.seo.description.length > 140 ? 'text-yellow-400' : 'text-gray-300'}`}>
-              {post.seo.description.length}/160
+            <span className={`${post?.seo?.description?.length > 160 ? 'text-red-400' : post?.seo?.description?.length > 140 ? 'text-yellow-400' : 'text-gray-300'}`}>
+              {post?.seo?.description?.length}/160
             </span>
           </div>
         </div>
@@ -415,7 +416,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
                     className="bg-gray-800/50 border-gray-700/50 focus:border-purple-500/50 text-white text-lg h-12 rounded-xl"
                   />
                   <p className="text-xs text-gray-500 mt-1">
-                    {post.title.length} characters • {post.title.length > 60 ? 'Consider shortening for better SEO' : 'Good length for SEO'}
+                    {post.title?.length} characters • {post.title?.length > 60 ? 'Consider shortening for better SEO' : 'Good length for SEO'}
                   </p>
                 </div>
 
@@ -432,7 +433,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
                     rows={3}
                   />
                   <p className="text-xs text-gray-500 mt-1">
-                    {post.excerpt.length} characters • This appears in search results and social shares
+                    {post.excerpt?.length} characters • This appears in search results and social shares
                   </p>
                 </div>
               </div>
@@ -501,7 +502,7 @@ Tips for great content:
                         rows={20}
                       />
                       
-                      {post.content.length === 0 && (
+                      {post.content?.length === 0 && (
                         <div className="absolute top-4 right-4 flex items-center gap-2 text-gray-500 text-xs">
                           <Lightbulb className="w-4 h-4" />
                           <span>Pro tip: Start with an engaging hook</span>
@@ -513,8 +514,8 @@ Tips for great content:
                       <div className="text-sm text-gray-400">
                         Minimum 100 words recommended for SEO
                       </div>
-                      <div className={`text-sm ${post.content.length > 100 ? 'text-green-400' : 'text-gray-400'}`}>
-                        {post.content.length > 100 ? '✓ Good length' : `${100 - post.content.split(' ').length} more words needed`}
+                      <div className={`text-sm ${post.content?.length > 100 ? 'text-green-400' : 'text-gray-400'}`}>
+                        {post.content?.length > 100 ? '✓ Good length' : `${100 - post.content.split(' ')?.length} more words needed`}
                       </div>
                     </div>
                   </div>
@@ -542,8 +543,8 @@ Tips for great content:
                         <p className="text-xs text-gray-500">
                           This title appears in search results
                         </p>
-                        <p className={`text-xs ${post.seo.title.length > 60 ? 'text-red-400' : post.seo.title.length > 50 ? 'text-yellow-400' : 'text-gray-500'}`}>
-                          {post.seo.title.length}/60 chars
+                        <p className={`text-xs ${post?.seo?.title?.length > 60 ? 'text-red-400' : post?.seo?.title?.length > 50 ? 'text-yellow-400' : 'text-gray-500'}`}>
+                          {post?.seo?.title?.length}/60 chars
                         </p>
                       </div>
                     </div>
@@ -564,8 +565,8 @@ Tips for great content:
                         <p className="text-xs text-gray-500">
                           Appears below your title in Google search results
                         </p>
-                        <p className={`text-xs ${post.seo.description.length > 160 ? 'text-red-400' : post.seo.description.length > 140 ? 'text-yellow-400' : 'text-gray-500'}`}>
-                          {post.seo.description.length}/160 chars
+                        <p className={`text-xs ${post?.seo?.description?.length > 160 ? 'text-red-400' : post?.seo?.description?.length > 140 ? 'text-yellow-400' : 'text-gray-500'}`}>
+                          {post?.seo?.description?.length}/160 chars
                         </p>
                       </div>
                     </div>
@@ -648,7 +649,7 @@ Tips for great content:
                           ))}
                         </div>
                         
-                        {post.categories.length === 0 && (
+                        {post.categories?.length === 0 && (
                           <p className="text-sm text-gray-500">No categories added yet</p>
                         )}
                       </div>
@@ -692,7 +693,7 @@ Tips for great content:
                           ))}
                         </div>
                         
-                        {post.tags.length === 0 && (
+                        {post.tags?.length === 0 && (
                           <p className="text-sm text-gray-500">No tags added yet</p>
                         )}
                       </div>
@@ -998,9 +999,9 @@ Tips for great content:
                       )}
                     </div>
                     
-                    {(post.categories.length > 0 || post.tags.length > 0) && (
+                    {(post.categories?.length > 0 || post.tags?.length > 0) && (
                       <div className="mt-8 pt-6 border-t border-gray-700">
-                        {post.categories.length > 0 && (
+                        {post.categories?.length > 0 && (
                           <div className="mb-4">
                             <span className="text-sm text-gray-400 mr-3">Categories:</span>
                             {post.categories.map((category: string) => (
@@ -1011,7 +1012,7 @@ Tips for great content:
                           </div>
                         )}
                         
-                        {post.tags.length > 0 && (
+                        {post.tags?.length > 0 && (
                           <div>
                             <span className="text-sm text-gray-400 mr-3">Tags:</span>
                             {post.tags.map((tag: string) => (

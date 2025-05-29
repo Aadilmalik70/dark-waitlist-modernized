@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 let dbInitialized = false;
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  console.log('API handler invoked for /api/blog/posts');
   // Initialize database if not already done
   if (!dbInitialized) {
     try {
@@ -38,22 +39,35 @@ async function getPosts(req: NextApiRequest, res: NextApiResponse) {
     const offset = (page - 1) * limit;
     const status = req.query.status || 'published';
     
-    // Get total count for pagination
-    const [countResult] = await connection.execute(
-      'SELECT COUNT(*) as total FROM blog_posts WHERE status = ?',
-      [status]
-    );
+    // Get total count for pagination - handle NULL status and 'all' parameter
+    let countQuery, countParams;
+    if (status === 'all') {
+      countQuery = 'SELECT COUNT(*) as total FROM blog_posts';
+      countParams = [];
+    } else {
+      countQuery = 'SELECT COUNT(*) as total FROM blog_posts WHERE (status = ? OR status IS NULL)';
+      countParams = [status];
+    }
+    
+    const [countResult] = await connection.execute(countQuery, countParams);
     const total = (countResult as any)[0].total;
     
-    // Get posts with pagination
-    // Use template literals for LIMIT and OFFSET to avoid parameterization issues
-    const [posts] = await connection.execute(
-      `SELECT * FROM blog_posts 
-       WHERE status = ? 
-       ORDER BY published_at DESC, created_at DESC 
-       LIMIT ${parseInt(limit.toString())} OFFSET ${parseInt(offset.toString())}`,
-      [status]
-    );
+    // Get posts with pagination - handle NULL status and 'all' parameter
+    let postsQuery, postsParams;
+    if (status === 'all') {
+      postsQuery = `SELECT * FROM blog_posts 
+                    ORDER BY created_at DESC 
+                    LIMIT ${parseInt(limit.toString())} OFFSET ${parseInt(offset.toString())}`;
+      postsParams = [];
+    } else {
+      postsQuery = `SELECT * FROM blog_posts 
+                    WHERE (status = ? OR status IS NULL) 
+                    ORDER BY created_at DESC 
+                    LIMIT ${parseInt(limit.toString())} OFFSET ${parseInt(offset.toString())}`;
+      postsParams = [status];
+    }
+    
+    const [posts] = await connection.execute(postsQuery, postsParams);
     
     // Format posts for API response
     const formattedPosts = (posts as any[]).map(post => formatBlogPost(post));
@@ -176,3 +190,12 @@ async function createPost(req: NextApiRequest, res: NextApiResponse) {
     await connection.end();
   }
 }
+
+// Increase body size limit to 4mb for large blog posts/images
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '8mb',
+    },
+  },
+};

@@ -201,7 +201,7 @@ export default function BlogAdminPage() {
     if (!confirm('Are you sure you want to delete this post?')) return;
     
     try {
-      const response = await fetch(`/api/blog/posts/${id}`, { method: 'DELETE' });
+      const response = await fetch(`/api/admin/blog/${id}`, { method: 'DELETE' });
       if (!response.ok) throw new Error('Failed to delete post');
       fetchPosts();
     } catch (error) {
@@ -212,7 +212,7 @@ export default function BlogAdminPage() {
 
   const handlePublishPost = async (id: string) => {
     try {
-      const response = await fetch(`/api/blog/posts/${id}`, {
+      const response = await fetch(`/api/admin/blog/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: 'published' }),
@@ -312,7 +312,7 @@ export default function BlogAdminPage() {
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="bg-gray-900 border-gray-800">
                 <DropdownMenuItem asChild>
-                  <Link href={`/admin/blog/edit/${post.id}`} className="flex items-center">
+                  <Link href={`/admin/blog/edit/${post.slug}`} className="flex items-center">
                     <Edit className="mr-2 h-4 w-4" />
                     Edit
                   </Link>
@@ -389,7 +389,7 @@ export default function BlogAdminPage() {
               asChild
               className="text-gray-400 hover:text-purple-400 h-8 w-8 p-0"
             >
-              <Link href={`/admin/blog/edit/${post.id}`}>
+              <Link href={`/admin/blog/edit/${post.slug}`}>
                 <Edit className="h-4 w-4" />
               </Link>
             </Button>

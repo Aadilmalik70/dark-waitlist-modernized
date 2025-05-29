@@ -3,8 +3,8 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/admin/blog": "pages/admin/blog.js",
-  "/admin/blog/new": "pages/admin/blog/new.js",
-  "/blog/[slug]": "pages/blog/[slug].js",
-  "/api/blog/posts/[id]": "pages/api/blog/posts/[id].js",
+  "/admin/blog/edit/[id]": "pages/admin/blog/edit/[id].js",
+  "/api/blog/posts/[slug]": "pages/api/blog/posts/[slug].js",
+  "/api/blog/posts": "pages/api/blog/posts.js",
   "/blog": "pages/blog.js"
 }

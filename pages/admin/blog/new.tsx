@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { Button } from '../../../components/ui/button';
 import { Input } from '../../../components/ui/input';
 import { Label } from '../../../components/ui/label';
@@ -17,14 +18,31 @@ import {
   AlertCircle,
   Sparkles,
   Target,
-  X
+  X,
+  Type,
+  Bold,
+  Italic,
+  List,
+  Link2,
+  Image
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+
+// Dynamically import ReactQuill to avoid SSR issues
+const ReactQuill = dynamic(() => import('react-quill-new'), {
+  ssr: false,
+  loading: () => (
+    <div className="bg-gray-800/30 border-gray-700/50 rounded-xl min-h-[400px] flex items-center justify-center">
+      <div className="text-gray-400">Loading editor...</div>
+    </div>
+  )
+});
 
 export default function NewPostPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+  const [editorLoaded, setEditorLoaded] = useState(false);
   
   const [post, setPost] = useState({
     title: '',
@@ -42,6 +60,34 @@ export default function NewPostPage() {
 
   const [newCategory, setNewCategory] = useState('');
   const [newTag, setNewTag] = useState('');
+
+  useEffect(() => {
+    setEditorLoaded(true);
+  }, []);
+
+  // Quill editor configuration
+  const quillModules = {
+    toolbar: [
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      ['bold', 'italic', 'underline', 'strike'],
+      [{ 'color': [] }, { 'background': [] }],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'indent': '-1'}, { 'indent': '+1' }],
+      ['blockquote', 'code-block'],
+      ['link', 'image'],
+      [{ 'align': [] }],
+      ['clean']
+    ],
+    clipboard: {
+      matchVisual: false,
+    }
+  };
+
+  const quillFormats = [
+    'header', 'bold', 'italic', 'underline', 'strike',
+    'color', 'background', 'list', 'bullet', 'indent',
+    'link', 'image', 'blockquote', 'code-block', 'align'
+  ];
 
   const handleSave = async () => {
     try {
@@ -136,10 +182,18 @@ export default function NewPostPage() {
     handleChange('tags', post.tags.filter(t => t !== tag));
   };
 
+  // Calculate word count from HTML content
+  const getWordCount = (htmlContent: string) => {
+    const text = htmlContent.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ');
+    return text.trim().split(/\s+/).filter(word => word.length > 0).length;
+  };
+
+  const wordCount = getWordCount(post.content);
+
   const completionScore = Math.min(100, 
     (post.title ? 25 : 0) + 
     (post.excerpt ? 15 : 0) + 
-    (post.content.length > 100 ? 25 : 0) + 
+    (wordCount > 100 ? 25 : 0) + 
     (post.featuredImage ? 15 : 0) + 
     (post.categories.length > 0 ? 10 : 0) + 
     (post.seo.title ? 10 : 0)
@@ -150,6 +204,95 @@ export default function NewPostPage() {
       <Head>
         <title>New Blog Post | SERP Strategist</title>
         <meta name="description" content="Create a new blog post" />
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
+        <style jsx global>{`
+          .ql-toolbar.ql-snow {
+            border: 1px solid rgb(55 65 81 / 0.5) !important;
+            border-bottom: none !important;
+            background: rgb(31 41 55 / 0.3) !important;
+            border-radius: 12px 12px 0 0 !important;
+          }
+          
+          .ql-container.ql-snow {
+            border: 1px solid rgb(55 65 81 / 0.5) !important;
+            border-radius: 0 0 12px 12px !important;
+            background: rgb(31 41 55 / 0.3) !important;
+          }
+          
+          .ql-editor {
+            color: white !important;
+            font-size: 16px !important;
+            line-height: 1.6 !important;
+            min-height: 400px !important;
+          }
+          
+          .ql-editor p {
+            margin-bottom: 1em !important;
+          }
+          
+          .ql-editor h1, .ql-editor h2, .ql-editor h3, .ql-editor h4, .ql-editor h5, .ql-editor h6 {
+            color: rgb(196 181 253) !important;
+            margin-top: 1.5em !important;
+            margin-bottom: 0.5em !important;
+          }
+          
+          .ql-editor blockquote {
+            border-left: 4px solid rgb(147 51 234) !important;
+            background: rgb(147 51 234 / 0.1) !important;
+            padding: 1em !important;
+            margin: 1em 0 !important;
+            color: rgb(196 181 253) !important;
+          }
+          
+          .ql-editor pre {
+            background: rgb(17 24 39) !important;
+            color: rgb(229 231 235) !important;
+            border: 1px solid rgb(55 65 81) !important;
+            border-radius: 8px !important;
+            padding: 1em !important;
+          }
+          
+          .ql-toolbar .ql-stroke {
+            stroke: rgb(156 163 175) !important;
+          }
+          
+          .ql-toolbar .ql-fill {
+            fill: rgb(156 163 175) !important;
+          }
+          
+          .ql-toolbar button:hover .ql-stroke {
+            stroke: rgb(147 51 234) !important;
+          }
+          
+          .ql-toolbar button:hover .ql-fill {
+            fill: rgb(147 51 234) !important;
+          }
+          
+          .ql-toolbar button.ql-active .ql-stroke {
+            stroke: rgb(147 51 234) !important;
+          }
+          
+          .ql-toolbar button.ql-active .ql-fill {
+            fill: rgb(147 51 234) !important;
+          }
+          
+          .ql-picker-label {
+            color: rgb(156 163 175) !important;
+          }
+          
+          .ql-picker-options {
+            background: rgb(31 41 55) !important;
+            border: 1px solid rgb(55 65 81) !important;
+          }
+          
+          .ql-picker-item {
+            color: rgb(156 163 175) !important;
+          }
+          
+          .ql-picker-item:hover {
+            color: rgb(147 51 234) !important;
+          }
+        `}</style>
       </Head>
 
       <div className="min-h-screen bg-gray-950 text-gray-100 relative overflow-hidden">
@@ -254,7 +397,7 @@ export default function NewPostPage() {
                 </div>
               </motion.div>
 
-              {/* Content Editor */}
+              {/* Rich Text Editor */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -263,32 +406,51 @@ export default function NewPostPage() {
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between mb-6">
-                    <Label className="text-gray-300 font-medium">Post Content</Label>
+                    <Label className="text-gray-300 font-medium flex items-center">
+                      <Type className="h-5 w-5 mr-2 text-purple-400" />
+                      Post Content
+                    </Label>
                     <div className="flex items-center gap-4 text-sm text-gray-400">
-                      <span>{post.content.split(' ').filter(w => w.length > 0).length} words</span>
+                      <span>{wordCount} words</span>
+                      <div className="flex items-center gap-2">
+                        <Bold className="h-4 w-4" />
+                        <Italic className="h-4 w-4" />
+                        <List className="h-4 w-4" />
+                        <Link2 className="h-4 w-4" />
+                        <Image className="h-4 w-4" />
+                      </div>
                     </div>
                   </div>
                   
-                  <Textarea
-                    value={post.content}
-                    onChange={(e) => handleChange('content', e.target.value)}
-                    placeholder="Start writing your amazing content here... 
+                  {editorLoaded && (
+                    <ReactQuill
+                      theme="snow"
+                      value={post.content}
+                      onChange={(content) => handleChange('content', content)}
+                      modules={quillModules}
+                      formats={quillFormats}
+                      placeholder="Start writing your amazing content here...
 
-Tips for great content:
-• Use clear headings and subheadings
-• Include relevant examples and stories
-• Break up text with bullet points and lists
-• Add actionable insights for your readers"
-                    className="bg-gray-800/30 border-gray-700/50 focus:border-purple-500/50 text-white resize-none rounded-xl min-h-[400px] text-base leading-relaxed"
-                    rows={20}
-                  />
+Use the toolbar above to format your text:
+• Add headings to structure your content
+• Use bold and italic for emphasis
+• Create lists and blockquotes
+• Add links and images
+• Format code blocks for technical content
+
+Write engaging, valuable content that your readers will love!"
+                      style={{ 
+                        minHeight: '400px'
+                      }}
+                    />
+                  )}
                   
                   <div className="flex items-center justify-between pt-4 border-t border-gray-800/50">
                     <div className="text-sm text-gray-400">
                       Minimum 100 words recommended for SEO
                     </div>
-                    <div className={`text-sm ${post.content.split(' ').length > 100 ? 'text-green-400' : 'text-gray-400'}`}>
-                      {post.content.split(' ').length > 100 ? '✓ Good length' : `${100 - post.content.split(' ').length} more words needed`}
+                    <div className={`text-sm ${wordCount > 100 ? 'text-green-400' : 'text-gray-400'}`}>
+                      {wordCount > 100 ? '✓ Good length' : `${100 - wordCount} more words needed`}
                     </div>
                   </div>
                 </div>
@@ -426,7 +588,7 @@ Tips for great content:
                       </div>
                       <div className="flex items-center justify-between">
                         <span className="text-gray-400">Content (100+ words)</span>
-                        {post.content.trim().split(' ').length > 100 ? (
+                        {wordCount > 100 ? (
                           <CheckCircle className="w-4 h-4 text-green-400" />
                         ) : (
                           <div className="w-4 h-4 rounded-full border-2 border-gray-600" />

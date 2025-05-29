@@ -28,6 +28,11 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/main.js",
       "static/chunks/pages/admin/blog.js"
     ],
+    "/admin/blog/edit/[id]": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/admin/blog/edit/[id].js"
+    ],
     "/blog": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
