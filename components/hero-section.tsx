@@ -1,6 +1,80 @@
+"use client"
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
 import Image from "next/image"
+ 
+import { Input } from "@/components/ui/input"
+import { useState } from "react"
+
+function EmailSubscribeForm() {
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage("");
+    setError("");
+    setSuccess(false);
+
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setSuccess(true);
+        setMessage(data.message || "Thank you for joining our waitlist!");
+        setEmail("");
+      } else if (res.status === 409 && data.alreadySubscribed) {
+        setError(data.error || "This email is already on our waitlist.");
+      } else {
+        setError(data.error || "Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      setError("Network error. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col items-center w-full"
+      style={{ maxWidth: "700px", margin: "0 auto" }}
+    >
+      <div className="flex w-full max-w-[700px]">
+        <Input
+          type="email"
+          placeholder="Enter your email"
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+          required
+          className="h-14 px-4 rounded-l-xl rounded-r-none text-base flex-1 min-w-[220px] sm:min-w-[320px] md:min-w-[380px] lg:min-w-[420px] border-r-0"
+          disabled={loading}
+        />
+        <Button
+          type="submit"
+          className="h-14 px-8 rounded-r-xl rounded-l-none bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-medium transition-all duration-200 shadow-lg shadow-purple-900/20 hover:shadow-purple-900/40 hover:scale-105 transform"
+          disabled={loading}
+          style={{ borderTopLeftRadius: 0, borderBottomLeftRadius: 0 }}
+        >
+          {loading ? "Submitting..." : "Join the Waitlist"}
+        </Button>
+      </div>
+      <div className="w-full mt-2 text-sm min-h-[24px] flex justify-center items-center">
+        {success && <span className="text-green-400">{message}</span>}
+        {error && <span className="text-red-400">{error}</span>}
+      </div>
+    </form>
+  );
+}
 
 export function HeroSection() {
   return (
@@ -34,22 +108,9 @@ export function HeroSection() {
             SERP Strategist employs innovative AI agents to perform deep competitive research, generating unparalleled content blueprints that guide you to outrank the competition and capture search visibility.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a href="#waitlist">
-              <Button className="h-14 px-8 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-medium transition-all duration-200 shadow-lg shadow-purple-900/20 hover:shadow-purple-900/40 hover:scale-105 transform">
-                <span className="mr-2">Join the Waitlist & Shape the Future</span>
-                <ArrowRight className="w-5 h-5" />
-              </Button>
-            </a>
-
-            <a href="#how-it-works">
-              <Button
-                variant="outline"
-                className="h-14 px-8 rounded-xl border-purple-500 text-cyan-400 hover:bg-purple-900/20 hover:text-white hover:scale-105 transform transition-all duration-200"
-              >
-                See the Agentic Flow
-              </Button>
-            </a>
+          <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md mx-auto">
+            {/* Email subscription form */}
+            <EmailSubscribeForm />
           </div>
           
           {/* Added stats section */}
