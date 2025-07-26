@@ -85,7 +85,7 @@ export function FeaturesSection() {
             <div className="relative" style={{ minHeight: 300 }}>
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-xl blur-xl"></div>
               <Image
-                src="/b1.png"
+                src="/ai-search-demo.png"
                 alt="Google AI Search Mode Analysis"
                 fill
                 objectFit="cover"
@@ -107,7 +107,7 @@ export function FeaturesSection() {
             <div className="order-2 md:order-1 relative" style={{ minHeight: 300 }}>
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-xl blur-xl"></div>
               <Image
-                src="/b2.png"
+                src="/team-collaboration.png"
                 alt="Team Collaboration Features"
                 fill
                 objectFit="cover"
