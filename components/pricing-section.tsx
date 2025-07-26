@@ -13,29 +13,20 @@ export function PricingSection() {
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center p-2 bg-gradient-to-r from-green-900/30 to-emerald-900/30 backdrop-blur-sm rounded-full mb-6">
-            <span className="px-3 py-1 text-green-300 text-sm font-medium">🎉 Early Access Pricing - Save 30%</span>
-          </div>
+
           <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
-            35-70% More Affordable Than Competitors
+            Flexible Pricing for Every Team
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto">
-            Join 843 teams already saving thousands while getting better results. Lock in early access pricing before we launch.
+            Choose the plan that best fits your team's needs and scale your content strategy with SERP Strategist.
           </p>
-          {/* Competitor pricing comparison */}
-          <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm text-gray-400">
-            <span>Frase Team Plan: <s className="text-gray-500">$115/mo</s></span>
-            <span>Surfer Business: <s className="text-gray-500">$119/mo</s></span>
-            <span>MarketMuse Standard: <s className="text-gray-500">$149/mo</s></span>
-          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <PricingCard
             name="Starter"
-            description="Perfect for small teams getting started"
+            description="Ideal for small teams and individual strategists beginning their journey into AI-powered content. Access essential AI search analysis and blueprint generation to kickstart your strategy."
             price="$39"
-            originalPrice="$59"
             period="/month"
             features={[
               "50 AI-Generated Content Blueprints/mo",
@@ -52,14 +43,12 @@ export function PricingSection() {
             ]}
             isPopular={false}
             ctaText="Start Free Trial"
-            savingsText="Save $480/year vs Frase"
           />
 
           <PricingCard
             name="Professional"
-            description="For growing content teams"
+            description="For growing content teams seeking advanced insights and collaborative capabilities. Unlock deeper AI search optimization, predictive analytics, and real-time team features."
             price="$79"
-            originalPrice="$119"
             period="/month"
             features={[
               "200 AI-Generated Blueprints/mo",
@@ -75,14 +64,12 @@ export function PricingSection() {
             limitations={[]}
             isPopular={true}
             ctaText="Get Early Access"
-            savingsText="Save $960/year vs Surfer"
           />
 
           <PricingCard
             name="Agency"
-            description="For agencies and large teams"
+            description="Comprehensive solution for agencies and large enterprises requiring unlimited scale, white-label reporting, and dedicated support for complex content operations."
             price="$149"
-            originalPrice="$249"
             period="/month"
             features={[
               "Unlimited Blueprints",
@@ -98,7 +85,6 @@ export function PricingSection() {
             limitations={[]}
             isPopular={false}
             ctaText="Contact Sales"
-            savingsText="Save $2,400/year vs MarketMuse"
           />
         </div>
 
@@ -137,26 +123,22 @@ interface PricingCardProps {
   name: string
   description: string
   price: string
-  originalPrice: string
   period: string
   features: string[]
   limitations: string[]
   isPopular: boolean
   ctaText: string
-  savingsText: string
 }
 
 function PricingCard({ 
   name, 
   description, 
   price, 
-  originalPrice, 
   period, 
   features, 
   limitations, 
   isPopular, 
-  ctaText, 
-  savingsText 
+  ctaText 
 }: PricingCardProps) {
   return (
     <Card
@@ -177,9 +159,7 @@ function PricingCard({
         <div className="mb-2">
           <span className="text-4xl font-bold text-white">{price}</span>
           <span className="text-gray-400">{period}</span>
-          <span className="text-gray-500 line-through ml-2">{originalPrice}</span>
         </div>
-        <p className="text-green-400 text-sm mb-6">{savingsText}</p>
 
         <ul className="space-y-3 mb-6">
           {features.map((feature, index) => (

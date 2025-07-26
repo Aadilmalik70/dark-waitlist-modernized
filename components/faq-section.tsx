@@ -96,30 +96,30 @@ function FaqItem({ question, answer, delay }: FaqItemProps) {
 const faqs = [
   {
     question: "What is SERP Strategist?",
-    answer: "An AI-powered platform that creates data-driven content blueprints based on top-ranking content in your niche, helping you dominate search results."
+    answer: "SERP Strategist is an innovative AI-powered platform designed to help content teams develop data-driven content blueprints optimized for Google\'s evolving AI search summaries. It streamlines research and enhances collaboration to create more effective content strategies."
   },
   {
     question: "How does it work?",
-    answer: "Enter your target keyword, get a blueprint with topics and keywords, create optimized content, and track results."
+    answer: "Our platform utilizes advanced AI agents to analyze real-time SERP data, including AI-generated summaries, to identify optimal content structures and intent. It then generates actionable blueprints that guide your team through the content creation process, fostering collaboration and efficiency."
   },
   {
     question: "Who is it for?",
-    answer: "Ideal for content marketers, SEO specialists, bloggers, and anyone improving organic search rankings."
+    answer: "SERP Strategist is built for content teams, SEO professionals, and agencies who are looking to adapt their strategies for the AI-driven search era, enhance team collaboration, and gain a competitive advantage through data-informed content creation."
   },
   {
     question: "What makes it different from other SEO tools?",
-    answer: "Unlike general SEO advice, it offers specific blueprints tailored to your keywords, eliminating guesswork."
+    answer: "Unlike traditional SEO tools, SERP Strategist is specifically engineered to analyze and optimize for Google\'s AI search summaries. We also prioritize team collaboration and provide a unique agentic AI approach to content blueprint generation, offering a more holistic and future-proof solution."
   },
   {
     question: "When will it be available?",
-    answer: "Set to launch in 14 days. Join the waitlist for early access and a 30% discount."
+    answer: "SERP Strategist is currently in an early access phase. We are inviting a select group of visionary teams to join our program, provide feedback, and help us refine the platform before its wider public launch. Join our waitlist to be notified of availability and exclusive early access opportunities."
   },
   {
     question: "How much does it cost?",
-    answer: "Pricing tiers start at $49/month (Starter) to $199/month (Agency), with features for all needs."
+    answer: "Our pricing tiers are designed to provide flexible options for teams of all sizes. You can view our current early access pricing on the pricing section above. We are committed to providing exceptional value as we grow."
   },
   {
     question: "Is there a free trial?",
-    answer: "Yes, a free trial will be offered post-launch. Join the waitlist for details."
+    answer: "Yes, we offer a 14-day free trial for our Starter and Professional tiers, allowing you to experience the core benefits of SERP Strategist firsthand. No credit card is required to start your trial."
   }
 ]

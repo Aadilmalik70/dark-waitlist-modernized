@@ -59,7 +59,7 @@ function EmailSubscribeForm() {
           className="h-12 sm:h-14 px-6 sm:px-8 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-medium transition-all duration-200 shadow-lg shadow-purple-900/20 hover:shadow-purple-900/40 rounded-b-xl sm:rounded-l-none sm:rounded-r-xl sm:rounded-b-xl whitespace-nowrap"
           disabled={loading}
         >
-          {loading ? "Joining..." : "Get Early Access (30% OFF)"}
+          {loading ? "Joining..." : "Join the Waitlist for Early Access"}
         </Button>
       </div>
       {(success || error) && (
@@ -95,18 +95,18 @@ export function HeroSection() {
           {/* New: Urgency banner */}
           <div className="inline-flex items-center justify-center p-2 bg-gradient-to-r from-purple-900/40 to-blue-900/40 backdrop-blur-sm rounded-full mb-6 animate-fade-in border border-purple-500/30">
             <span className="px-3 py-1 text-purple-300 text-sm font-medium">
-              ⏰ Limited Early Access: Only 37 Spots Left at 30% OFF
+              Join the SERP Strategist Early Access Program
             </span>
           </div>
 
           {/* Updated headline with quantified benefit */}
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-cyan-400 to-blue-400 leading-tight max-w-5xl">
-            Dominate Google's AI Search Results with Team-First Content Intelligence
+            Future-Proof Your Content Strategy: Master Google's AI Search with SERP Strategist.
           </h1>
 
           {/* Updated subheadline addressing Google AI and team collaboration */}
           <p className="text-gray-300 text-lg md:text-xl max-w-3xl mb-10">
-            SERP Strategist's AI agents analyze what ranks in Google's new AI summaries, creating data-driven blueprints your entire team can execute. Cut research time by 75% while achieving 3x better rankings than solo tools like Frase or Surfer.
+            SERP Strategist empowers content teams to adapt and thrive in the era of AI-powered search. Our agentic AI analyzes real-time search trends and AI summaries to generate data-driven content blueprints, helping your team create highly relevant and effective content.
           </p>
 
           {/* New: Trust indicators */}
@@ -128,33 +128,11 @@ export function HeroSection() {
           {/* Email subscription form with enhanced CTA */}
           <EmailSubscribeForm />
           
-          {/* Enhanced stats section with more urgency */}
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div className="flex flex-col items-center p-4 bg-gray-900/30 backdrop-blur-sm rounded-xl border border-gray-800 hover:border-purple-500/50 transition-all duration-300">
-              <div className="text-2xl font-bold text-purple-400 mb-1">843</div>
-              <div className="text-gray-400 text-sm">Teams Joined</div>
-            </div>
-            <div className="flex flex-col items-center p-4 bg-gray-900/30 backdrop-blur-sm rounded-xl border border-gray-800 hover:border-blue-500/50 transition-all duration-300">
-              <div className="text-2xl font-bold text-blue-400 mb-1">137%</div>
-              <div className="text-gray-400 text-sm">Avg Traffic Increase</div>
-            </div>
-            <div className="flex flex-col items-center p-4 bg-gray-900/30 backdrop-blur-sm rounded-xl border border-gray-800 hover:border-cyan-500/50 transition-all duration-300">
-              <div className="text-2xl font-bold text-cyan-400 mb-1">72 hrs</div>
-              <div className="text-gray-400 text-sm">Until Price Increase</div>
-            </div>
-            <div className="flex flex-col items-center p-4 bg-gray-900/30 backdrop-blur-sm rounded-xl border border-gray-800 hover:border-indigo-500/50 transition-all duration-300">
-              <div className="text-2xl font-bold text-indigo-400 mb-1">70%</div>
-              <div className="text-gray-400 text-sm">AI Search Visibility</div>
-            </div>
-          </div>
-
-          {/* New: Competitor comparison teaser */}
-          <div className="mt-12 text-sm text-gray-400">
-            <p>Trusted by teams who switched from 
-              <span className="text-purple-400"> Frase</span>, 
-              <span className="text-blue-400"> Surfer SEO</span>, and 
-              <span className="text-cyan-400"> MarketMuse</span>
-            </p>
+          {/* Supporting Text */}
+          <div className="mt-16 text-center text-gray-400 text-sm max-w-2xl mx-auto">
+            <p>Be among the first to explore the future of AI-powered content strategy.</p>
+            <p>Help shape the development of a tool designed for the next era of search.</p>
+            <p>No credit card required for early access. Cancel anytime.</p>
           </div>
         </div>
       </div>

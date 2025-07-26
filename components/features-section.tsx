@@ -22,14 +22,14 @@ export function FeaturesSection() {
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
         <div className="text-center mb-16">
           <div className="inline-flex items-center justify-center p-2 bg-gradient-to-r from-blue-900/30 to-purple-900/30 backdrop-blur-sm rounded-full mb-6">
-            <span className="px-3 py-1 text-blue-300 text-sm font-medium">Outperform Solo Tools Like Frase & Surfer</span>
+            <span className="px-3 py-1 text-blue-300 text-sm font-medium">Unlock the Future of Content Strategy</span>
           </div>
           
           <h2 className="text-3xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
             The Only SEO Platform Built for Google's AI Search Era
           </h2>
           <p className="text-gray-300 max-w-3xl mx-auto text-lg">
-            While competitors focus on traditional search, SERP Strategist helps your team dominate both classic results AND Google's AI summaries—at 35-70% lower cost.
+            SERP Strategist is designed to empower your team with the insights and tools needed to navigate the complexities of AI-driven search, providing a competitive edge in the evolving digital landscape.
           </p>
         </div>
 
@@ -50,14 +50,12 @@ export function FeaturesSection() {
                 Master Google's AI Search Mode Before Your Competition
               </h3>
               <p className="text-gray-300 mb-6">
-                70% of searches now show AI-generated summaries first. SERP Strategist is the ONLY tool that analyzes what content appears in these AI summaries, giving you the exact blueprint to get featured where it matters most.
+                Our proprietary AI agents continuously analyze patterns in Google's AI-generated search summaries. We help you identify the content structures and nuances that AI favors, providing actionable blueprints to increase your visibility in these critical new search environments.
               </p>
               <ul className="space-y-3">
-                {[
-                  "Analyze patterns in AI-generated search summaries",
-                  "Identify the exact content structure AI favors",
-                  "Get featured in AI summaries 3x more often",
-                  "Stay ahead as Google's AI evolves"
+                {[                  "Analyze emerging patterns in AI-generated search results",
+                  "Identify optimal content structures for AI visibility",
+                  "Gain insights to inform your AI-era content strategy"
                 ].map((item, index) => (
                   <motion.li 
                     key={index}
@@ -78,7 +76,7 @@ export function FeaturesSection() {
               </ul>
               <div className="mt-6 p-4 bg-gray-900/50 rounded-lg border border-gray-800">
                 <p className="text-sm text-gray-400">
-                  <span className="text-purple-400 font-semibold">Industry First:</span> While Frase and Surfer optimize for yesterday's search, we're building for tomorrow's AI-dominated SERPs.
+                  <span className="text-purple-400 font-semibold">Adaptive Advantage:</span> We are building for tomorrow's AI-dominated SERPs, providing you with an adaptive strategy that evolves with search engines.
                 </p>
               </div>
             </div>
@@ -122,14 +120,13 @@ export function FeaturesSection() {
                 Built for Teams, Not Solo Writers
               </h3>
               <p className="text-gray-300 mb-6">
-                Unlike Frase or Surfer's single-user focus, SERP Strategist enables your entire content team to collaborate on blueprints, share insights, and maintain consistency across all content—at a fraction of the cost.
+                Designed from the ground up for team workflows, SERP Strategist fosters seamless collaboration across your content creation process. Share insights, co-create blueprints, and maintain content consistency with features built for multiple users.
               </p>
               <ul className="space-y-3">
                 {[
-                  "Real-time blueprint collaboration for up to 10 team members",
-                  "Shared knowledge base of successful content patterns",
-                  "Role-based permissions and workflow management",
-                  "35-70% more cost-effective than competitor team plans"
+                  "Real-time blueprint collaboration for enhanced team synergy",
+                  "Centralized knowledge base for successful content patterns",
+                  "Streamlined workflows to maintain content consistency"
                 ].map((item, index) => (
                   <motion.li 
                     key={index}
@@ -178,28 +175,22 @@ export function FeaturesSection() {
             <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6">
               <h4 className="font-semibold text-purple-400 mb-2">vs. Frase</h4>
               <ul className="text-sm text-gray-300 space-y-2 text-left">
-                <li>✓ 65% lower cost for teams</li>
-                <li>✓ AI search mode analysis</li>
-                <li>✓ Real-time collaboration</li>
-                <li>✓ No content limits</li>
+                <li>✓ Optimized for AI Search</li>
+                <li>✓ Enhanced Team Collaboration</li>
               </ul>
             </div>
             <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6">
               <h4 className="font-semibold text-blue-400 mb-2">vs. Surfer SEO</h4>
               <ul className="text-sm text-gray-300 space-y-2 text-left">
-                <li>✓ 70% more affordable</li>
-                <li>✓ Deeper competitor analysis</li>
-                <li>✓ Team workflows built-in</li>
-                <li>✓ Predictive performance</li>
+                <li>✓ Deeper Competitor Insights</li>
+                <li>✓ Predictive Content Guidance</li>
               </ul>
             </div>
             <div className="bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6">
               <h4 className="font-semibold text-cyan-400 mb-2">vs. MarketMuse</h4>
               <ul className="text-sm text-gray-300 space-y-2 text-left">
-                <li>✓ 80% cost reduction</li>
-                <li>✓ Faster blueprint generation</li>
-                <li>✓ No enterprise lock-in</li>
-                <li>✓ Self-serve onboarding</li>
+                <li>✓ Agile Blueprint Generation</li>
+                <li>✓ User-Centric Onboarding</li>
               </ul>
             </div>
           </div>
@@ -213,7 +204,7 @@ export function FeaturesSection() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="mr-2">Join 843 Teams Getting Early Access</span>
+              <span className="mr-2">Join the SERP Strategist Early Access Program</span>
               <ArrowRight className="w-5 h-5 inline-block" />
             </motion.button>
           </a>
@@ -252,38 +243,38 @@ function FeatureCard({ icon, title, description, benefit, delay }: FeatureCardPr
 const features = [
   {
     icon: <Brain className="w-6 h-6 text-purple-400" />,
-    title: "Cut Research Time by 75%",
-    description: "Our AI agents analyze top-ranking content 24x faster than manual research, identifying patterns competitors miss.",
-    benefit: "Save 30+ hours per month on content research"
+    title: "Accelerated Content Research",
+    description: "Our intelligent AI agents automate the labor-intensive process of analyzing top-ranking content and competitor strategies. This allows your team to quickly uncover critical insights and identify content opportunities that manual research often misses, significantly reducing your research overhead.",
+    benefit: "Streamline your research workflow"
   },
   {
     icon: <Target className="w-6 h-6 text-blue-400" />,
-    title: "137% Average Traffic Increase",
-    description: "Data-driven blueprints based on what actually ranks, not guesswork. Know exactly what Google's algorithms favor.",
-    benefit: "Proven results from 843 beta users"
+    title: "Strategy for Organic Growth",
+    description: "Our data-driven blueprints are meticulously crafted based on in-depth analysis of what truly resonates with search engines and users. By focusing on intent-matched content and optimal structure, we aim to equip your team with the insights needed to drive meaningful organic traffic.",
+    benefit: "Drive targeted organic traffic"
   },
   {
     icon: <FileText className="w-6 h-6 text-cyan-400" />,
-    title: "Intent-Matched Blueprints",
-    description: "Go beyond keywords to understand true search intent. Get the exact content structure that satisfies user needs.",
-    benefit: "40% higher engagement rates"
+    title: "Precision Intent Matching",
+    description: "Move beyond basic keyword analysis. SERP Strategist helps you uncover the true underlying search intent behind queries, guiding you to create content structures that deeply satisfy user needs and drive higher engagement.",
+    benefit: "Boost content engagement"
   },
   {
     icon: <Workflow className="w-6 h-6 text-indigo-400" />,
-    title: "Predictive Performance Scoring",
-    description: "Know your content's ranking potential before you publish. Our AI predicts performance with 89% accuracy.",
-    benefit: "Eliminate content that won't perform"
+    title: "Strategic Content Forecasting",
+    description: "Gain a clearer understanding of your content\"s potential impact before publication. Our AI-powered insights provide a strategic perspective on ranking potential, helping you prioritize and refine your content efforts to maximize effectiveness.",
+    benefit: "Optimize content for impact"
   },
   {
     icon: <Bot className="w-6 h-6 text-purple-400" />,
-    title: "Autonomous Research Agents",
-    description: "Deploy AI agents that think like expert strategists, continuously learning from SERP changes and competitor moves.",
-    benefit: "Stay ahead without constant monitoring"
+    title: "Dynamic Research Agents",
+    description: "Our autonomous AI agents act as an extension of your strategy team, continuously monitoring SERP changes, analyzing competitor moves, and learning from the evolving search landscape. This ensures your content strategy remains agile and informed, without constant manual oversight.",
+    benefit: "Stay ahead of market trends"
   },
   {
     icon: <Rocket className="w-6 h-6 text-blue-400" />,
-    title: "Future-Proof Your Strategy",
-    description: "Built on cutting-edge AI that evolves with search engines. Your competitive edge grows stronger over time.",
-    benefit: "Never fall behind algorithm updates"
+    title: "Adaptive Strategy for Evolving Search",
+    description: "Built on a foundation of cutting-edge AI, SERP Strategist is designed to evolve alongside search engine algorithms. This ensures your content strategy remains resilient and effective, providing a lasting competitive advantage in a dynamic digital landscape.",
+    benefit: "Future-proof your SEO"
   }
 ]
