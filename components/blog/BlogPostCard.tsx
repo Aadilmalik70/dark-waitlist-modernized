@@ -1,132 +1,123 @@
-import React from 'react';
-import { Card, CardContent, CardFooter, CardHeader } from '../ui/card';
-import { Badge } from '../ui/badge';
-import { Calendar, Eye, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { Badge } from '../ui/badge';
+import { Clock, Eye, ArrowRight } from 'lucide-react';
+import { urlFor } from '../../lib/sanity';
 
-interface BlogPostCardProps {
-  post: {
-    id: string;
-    title: string;
-    slug: string;
-    excerpt: string;
-    featuredImage?: string;
-    author: {
-      name: string;
-      avatar?: string;
-    };
-    publishedAt: string;
-    categories?: string[];
-    readTime?: string;
-    commentCount?: number;
-    viewCount?: number;
+interface BlogPost {
+  _id: string;
+  title: string;
+  slug: { current: string };
+  excerpt: string;
+  mainImage?: {
+    asset: any;
+    alt?: string;
   };
+  author: {
+    name: string;
+    image?: {
+      asset: any;
+      alt?: string;
+    };
+  };
+  publishedAt: string;
+  categories?: Array<{
+    title: string;
+    color: string;
+  }>;
+  readingTime?: number;
+  featured?: boolean;
 }
 
-const BlogPostCard: React.FC<BlogPostCardProps> = ({ post }) => {
-  const formattedDate = post.publishedAt 
-    ? new Date(post.publishedAt).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
-      })
-    : null;
+interface BlogPostCardProps {
+  post: BlogPost;
+}
+
+export const BlogPostCard = ({ post }: BlogPostCardProps) => {
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+  };
+
+  const imageUrl = post.mainImage ? urlFor(post.mainImage.asset).width(800).height(400).url() : null;
+  const authorAvatar = post.author.image ? urlFor(post.author.image.asset).width(64).height(64).url() : null;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-    >
-      <Card className="h-full flex flex-col overflow-hidden transition-all hover:shadow-md hover:shadow-purple-900/10 hover:border-purple-500/30 border-gray-800 bg-gray-900/50 backdrop-blur-sm">
-        <Link href={`/blog/${post.slug}`} className="flex flex-col h-full group">
-          {post.featuredImage && (
-            <div className="aspect-video w-full overflow-hidden relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-blue-900/30 opacity-60 group-hover:opacity-40 transition-opacity z-10"></div>
-              <img 
-                src={post.featuredImage} 
-                alt={post.title} 
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
+    <Link href={`/blog/${post.slug.current}`}>
+      <div className="group relative overflow-hidden bg-gray-900/40 backdrop-blur-sm border border-gray-800/50 rounded-2xl hover:border-purple-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-purple-900/20 cursor-pointer">
+        {/* Featured Image */}
+        <div className="relative aspect-[16/10] overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 via-transparent to-blue-600/20 z-10"></div>
+          {imageUrl ? (
+            <img 
+              src={imageUrl} 
+              alt={post.mainImage?.alt || post.title}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-purple-600/20 to-blue-600/20 flex items-center justify-center">
+              <span className="text-white/60 text-sm font-medium">No Image</span>
             </div>
           )}
-          
-          <CardHeader className="flex-grow">
-            <div className="flex flex-wrap gap-2 mb-3">
-              {post.categories && post.categories.map((category, index) => (
-                <Badge 
-                  key={index} 
-                  variant="outline" 
-                  className="bg-purple-900/20 text-purple-300 border-purple-500/30 hover:bg-purple-900/30"
-                >
-                  {category}
-                </Badge>
-              ))}
+          <div className="absolute top-4 left-4 z-20 flex gap-2">
+            {post.categories?.slice(0, 2).map((category) => (
+              <Badge 
+                key={category.title} 
+                className="bg-black/40 backdrop-blur-sm text-white border-white/20 hover:bg-black/60 transition-colors"
+              >
+                {category.title}
+              </Badge>
+            ))}
+          </div>
+          {post.readingTime && (
+            <div className="absolute bottom-4 right-4 z-20 flex items-center gap-3 text-white/80 text-sm">
+              <div className="flex items-center gap-1">
+                <Clock className="w-4 h-4" />
+                <span>{post.readingTime}m read</span>
+              </div>
             </div>
-            
-            <h3 className="text-xl font-bold leading-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-purple-400 group-hover:to-blue-400 transition-all">
-              {post.title}
-            </h3>
-            
-            {formattedDate && (
-              <div className="flex items-center text-sm text-gray-400 mt-2">
-                <Calendar className="mr-1 h-3 w-3" />
-                <span>{formattedDate}</span>
-                {post.readTime && (
-                  <>
-                    <span className="mx-2">•</span>
-                    <span>{post.readTime} read</span>
-                  </>
-                )}
+          )}
+        </div>
+        
+        {/* Content */}
+        <div className="p-6 space-y-4">
+          <div className="flex items-center gap-3 text-sm text-gray-400">
+            {authorAvatar ? (
+              <img 
+                src={authorAvatar} 
+                alt={post.author.name}
+                className="w-8 h-8 rounded-full ring-2 ring-purple-500/20"
+              />
+            ) : (
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center ring-2 ring-purple-500/20">
+                <span className="text-white text-xs font-bold">
+                  {post.author.name.charAt(0).toUpperCase()}
+                </span>
               </div>
             )}
-          </CardHeader>
+            <span className="font-medium text-gray-300">{post.author.name}</span>
+            <span>•</span>
+            <span>{formatDate(post.publishedAt)}</span>
+          </div>
           
-          <CardContent className="flex-grow-0">
-            <p className="text-gray-400 line-clamp-3">{post.excerpt}</p>
-          </CardContent>
+          <h3 className="text-xl font-bold text-white leading-tight group-hover:text-purple-300 transition-colors line-clamp-2">
+            {post.title}
+          </h3>
           
-          <CardFooter className="flex justify-between items-center pt-4 border-t border-gray-800">
-            <div className="flex items-center space-x-2">
-              {post.author.avatar ? (
-                <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full blur-sm opacity-50"></div>
-                  <img 
-                    src={post.author.avatar} 
-                    alt={post.author.name} 
-                    className="relative h-8 w-8 rounded-full border border-gray-700"
-                  />
-                </div>
-              ) : (
-                <div className="h-8 w-8 rounded-full bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center text-xs text-white font-medium">
-                  {post.author.name.charAt(0)}
-                </div>
-              )}
-              <span className="text-sm font-medium text-gray-300">{post.author.name}</span>
+          <p className="text-gray-400 leading-relaxed line-clamp-3">
+            {post.excerpt}
+          </p>
+          
+          <div className="flex items-center justify-between pt-2">
+            <div className="flex items-center text-purple-400 font-medium group-hover:text-purple-300 transition-colors">
+              <span className="text-sm">Read More</span>
+              <ArrowRight className="w-4 h-4 ml-1 transition-transform group-hover:translate-x-1" />
             </div>
-            
-            <div className="flex items-center space-x-4 text-gray-400 text-sm">
-              {post.viewCount !== undefined && (
-                <div className="flex items-center">
-                  <Eye className="h-3 w-3 mr-1" />
-                  <span>{post.viewCount}</span>
-                </div>
-              )}
-              
-              {post.commentCount !== undefined && (
-                <div className="flex items-center">
-                  <MessageCircle className="h-3 w-3 mr-1" />
-                  <span>{post.commentCount}</span>
-                </div>
-              )}
-            </div>
-          </CardFooter>
-        </Link>
-      </Card>
-    </motion.div>
+          </div>
+        </div>
+      </div>
+    </Link>
   );
 };
-
-export default BlogPostCard;

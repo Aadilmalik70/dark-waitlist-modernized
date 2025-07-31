@@ -1,0 +1,12 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /studio
+Disallow: /test-*
+Disallow: /api
+
+# Host
+Host: https://serpstrategist.com
+
+# Sitemaps
+Sitemap: https://serpstrategist.com/sitemap.xml
