@@ -1,7 +1,11 @@
 // Google Analytics script for Next.js
 import Script from 'next/script';
 
-export default function GoogleAnalytics({ measurementId }) {
+interface GoogleAnalyticsProps {
+  measurementId: string;
+}
+
+export default function GoogleAnalytics({ measurementId }: GoogleAnalyticsProps) {
   return (
     <>
       <Script
