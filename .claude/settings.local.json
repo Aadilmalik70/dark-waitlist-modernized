@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm run build:*)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
+      "Bash(true)",
+      "Bash(npx tsc:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(rm:*)",
+      "Bash(npm run dev:*)",
+      "Bash(timeout 60 npm run build)",
+      "Bash(npx playwright:*)",
+      "Bash(claude mcp add:*)",
+      "Bash(curl:*)",
+      "Bash(pkill:*)",
+      "mcp__sequential-thinking__sequentialthinking",
+      "WebFetch(domain:www.semrush.com)"
+    ],
+    "deny": []
+  }
+}
