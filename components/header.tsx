@@ -19,44 +19,49 @@ export function Header() {
 
   return (
     <header 
-      className={`border-b transition-all duration-300 sticky top-0 z-50 ${
+      className={`sticky top-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? "border-gray-800 bg-gray-950/90 backdrop-blur-md shadow-lg shadow-purple-900/5" 
-          : "border-transparent bg-transparent"
+          ? "bg-white/80 backdrop-blur-xl border-b border-gray-200/60 shadow-sm" 
+          : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center">
-            <Link href="/" className="text-xl font-bold">
-              <span className="text-purple-400">SERP</span>
-              <span className="text-cyan-400">Strategist</span>
+            <Link href="/" className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center">
+                <span className="text-white font-bold text-sm">S</span>
+              </div>
+              <span className="text-lg font-semibold text-gray-900">SERP Strategists</span>
             </Link>
           </div>
           
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            <a href="#features" className="text-gray-300 hover:text-white transition-colors hover:scale-105 transform duration-200">
-              Features
-            </a>
-            <a href="#how-it-works" className="text-gray-300 hover:text-white transition-colors hover:scale-105 transform duration-200">
+          <nav className="hidden md:flex items-center gap-8">
+            <a href="#solution" className="text-sm text-gray-600 hover:text-gray-900 transition-colors font-medium">
               How It Works
             </a>
-            <a href="#pricing" className="text-gray-300 hover:text-white transition-colors hover:scale-105 transform duration-200">
-              Pricing
+            <a href="#features" className="text-sm text-gray-600 hover:text-gray-900 transition-colors font-medium">
+              Features
             </a>
-            <Link href="/blog" className="text-gray-300 hover:text-white transition-colors hover:scale-105 transform duration-200">
+            <a href="#capabilities" className="text-sm text-gray-600 hover:text-gray-900 transition-colors font-medium">
+              Capabilities
+            </a>
+            <a href="#integrations" className="text-sm text-gray-600 hover:text-gray-900 transition-colors font-medium">
+              Integrations
+            </a>
+            <Link href="/blog" className="text-sm text-gray-600 hover:text-gray-900 transition-colors font-medium">
               Blog
             </Link>
-            <a href="#waitlist">
-              <Button 
-                variant="outline" 
-                className="border-purple-500 text-purple-400 hover:bg-purple-500/10 hover:scale-105 transform duration-200"
-              >
+          </nav>
+
+          <div className="hidden md:flex items-center gap-3">
+            <a href="#cta">
+              <Button className="bg-gray-900 hover:bg-gray-800 text-white text-sm font-medium px-5 py-2 rounded-lg shadow-sm">
                 Join Waitlist
               </Button>
             </a>
-          </nav>
+          </div>
           
           {/* Mobile Menu Button */}
           <div className="md:hidden">
@@ -64,9 +69,9 @@ export function Header() {
               variant="ghost" 
               size="icon" 
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-gray-300 hover:text-white"
+              className="text-gray-600 hover:text-gray-900"
             >
-              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
           </div>
         </div>
@@ -74,41 +79,24 @@ export function Header() {
       
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-gray-900/95 backdrop-blur-md border-b border-gray-800">
-          <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-            <a 
-              href="#features" 
-              className="text-gray-300 hover:text-white transition-colors py-2 px-4 hover:bg-gray-800/50 rounded-lg"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Features
-            </a>
-            <a 
-              href="#how-it-works" 
-              className="text-gray-300 hover:text-white transition-colors py-2 px-4 hover:bg-gray-800/50 rounded-lg"
-              onClick={() => setMobileMenuOpen(false)}
-            >
+        <div className="md:hidden bg-white/95 backdrop-blur-xl border-b border-gray-200">
+          <div className="container mx-auto px-4 py-4 flex flex-col space-y-3">
+            <a href="#solution" className="text-gray-600 hover:text-gray-900 py-2 px-3 rounded-lg hover:bg-gray-50 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
               How It Works
             </a>
-            <a 
-              href="#pricing" 
-              className="text-gray-300 hover:text-white transition-colors py-2 px-4 hover:bg-gray-800/50 rounded-lg"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              Pricing
+            <a href="#features" className="text-gray-600 hover:text-gray-900 py-2 px-3 rounded-lg hover:bg-gray-50 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
+              Features
             </a>
-            <Link 
-              href="/blog" 
-              className="text-gray-300 hover:text-white transition-colors py-2 px-4 hover:bg-gray-800/50 rounded-lg"
-              onClick={() => setMobileMenuOpen(false)}
-            >
+            <a href="#capabilities" className="text-gray-600 hover:text-gray-900 py-2 px-3 rounded-lg hover:bg-gray-50 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
+              Capabilities
+            </a>
+            <a href="#integrations" className="text-gray-600 hover:text-gray-900 py-2 px-3 rounded-lg hover:bg-gray-50 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
+              Integrations
+            </a>
+            <Link href="/blog" className="text-gray-600 hover:text-gray-900 py-2 px-3 rounded-lg hover:bg-gray-50 text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
               Blog
             </Link>
-            <a 
-              href="#waitlist" 
-              className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2 px-4 rounded-lg text-center font-medium"
-              onClick={() => setMobileMenuOpen(false)}
-            >
+            <a href="#cta" className="bg-gray-900 text-white py-2.5 px-4 rounded-lg text-center text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
               Join Waitlist
             </a>
           </div>

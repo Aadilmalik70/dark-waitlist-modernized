@@ -51,39 +51,6 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Custom color palette for the dark theme
-        gray: {
-          950: "#0A0B0F", // Darker than default tailwind gray-900
-          900: "#121318",
-          800: "#1E2029",
-          700: "#2E303D",
-        },
-        purple: {
-          400: "#A78BFA",
-          500: "#8B5CF6",
-          600: "#7C3AED",
-          700: "#6D28D9",
-          900: "#4C1D95",
-        },
-        blue: {
-          400: "#60A5FA",
-          500: "#3B82F6",
-          600: "#2563EB",
-          700: "#1D4ED8",
-          900: "#1E3A8A",
-        },
-        cyan: {
-          400: "#22D3EE",
-          500: "#06B6D4",
-        },
-        indigo: {
-          400: "#818CF8",
-          500: "#6366F1",
-        },
-        green: {
-          400: "#4ADE80",
-          900: "#14532D",
-        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -99,15 +66,25 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
         },
-        pulse: {
-          "0%, 100%": { opacity: 0.6 },
-          "50%": { opacity: 0.2 },
+        "fade-in": {
+          from: { opacity: 0, transform: "translateY(10px)" },
+          to: { opacity: 1, transform: "translateY(0)" },
+        },
+        "slide-up": {
+          from: { opacity: 0, transform: "translateY(20px)" },
+          to: { opacity: 1, transform: "translateY(0)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        pulse: "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "fade-in": "fade-in 0.6s ease forwards",
+        "slide-up": "slide-up 0.8s ease forwards",
+        float: "float 6s ease-in-out infinite",
       },
     },
   },

@@ -15,29 +15,29 @@ const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-EXAMPL
 
 export const metadata: Metadata = {
   title: {
-    default: 'SERP Strategist | Agentic AI Content Blueprints for Search Dominance',
-    template: '%s | SERP Strategist'
+    default: 'SERP Strategists | Autonomous Search Growth Agent for SEO + GEO',
+    template: '%s | SERP Strategists'
   },
-  description: 'Go beyond keywords with innovative AI agents that perform deep competitive research and generate unparalleled content blueprints to outrank your competition.',
+  description: 'SERP Strategists is an autonomous search growth agent that observes, analyzes, plans, executes, evaluates, and learns — driving SEO and GEO results on autopilot.',
   keywords: [
-    'SEO strategy',
-    'content marketing', 
-    'SERP optimization',
-    'AI content creation',
-    'search engine rankings',
-    'digital marketing',
-    'competitive research',
-    'content blueprints'
+    'autonomous SEO',
+    'GEO optimization',
+    'search growth agent',
+    'AI SEO automation',
+    'generative engine optimization',
+    'SEO automation platform',
+    'autonomous search growth',
+    'AI content optimization'
   ],
-  authors: [{ name: 'SERP Strategist Team' }],
-  creator: 'SERP Strategist',
-  publisher: 'SERP Strategist',
+  authors: [{ name: 'SERP Strategists' }],
+  creator: 'SERP Strategists',
+  publisher: 'SERP Strategists',
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL(process.env.SITE_URL || 'https://serpstrategist.com'),
+  metadataBase: new URL(process.env.SITE_URL || 'https://serpstrategists.com'),
   alternates: {
     canonical: '/',
     languages: {
@@ -48,25 +48,25 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: process.env.SITE_URL || 'https://serpstrategist.com',
-    title: 'SERP Strategist | Agentic AI Content Blueprints for Search Dominance',
-    description: 'Go beyond keywords with innovative AI agents that perform deep competitive research and generate unparalleled content blueprints to outrank your competition.',
-    siteName: 'SERP Strategist',
+    url: process.env.SITE_URL || 'https://serpstrategists.com',
+    title: 'SERP Strategists | Autonomous Search Growth Agent for SEO + GEO',
+    description: 'SERP Strategists is an autonomous search growth agent that observes, analyzes, plans, executes, evaluates, and learns — driving SEO and GEO results on autopilot.',
+    siteName: 'SERP Strategists',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'SERP Strategist - AI-Powered SEO Strategy Platform',
+        alt: 'SERP Strategists - Autonomous Search Growth Agent',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SERP Strategist | Agentic AI Content Blueprints for Search Dominance',
-    description: 'Go beyond keywords with innovative AI agents that perform deep competitive research and generate unparalleled content blueprints to outrank your competition.',
-    site: '@serpstrategist',
-    creator: '@serpstrategist',
+    title: 'SERP Strategists | Autonomous Search Growth Agent for SEO + GEO',
+    description: 'SERP Strategists is an autonomous search growth agent that observes, analyzes, plans, executes, evaluates, and learns — driving SEO and GEO results on autopilot.',
+    site: '@serpstrategists',
+    creator: '@serpstrategists',
     images: ['/og-image.jpg'],
   },
   robots: {
