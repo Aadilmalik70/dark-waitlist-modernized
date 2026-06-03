@@ -12,6 +12,7 @@ import { ScrollToSection } from "@/components/scroll-to-section"
 export default function Home() {
   return (
     <div className="min-h-screen bg-gray-950 text-gray-100">
+      <title>SERP Strategists - SEO Experts</title>
       <ScrollToSection />
       <Header />
       <main>
