@@ -45,6 +45,9 @@ export function AppHead({ siteUrl }: AppHeadProps) {
       <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
       <meta name="referrer" content="strict-origin-when-cross-origin" />
       
+      {/* Meta description */}
+      <meta name="description" content="Unlock your website's potential with our expert SEO strategies" />
+      
       {/* Website Schema Markup */}
       <WebsiteSchema 
         siteUrl={siteUrl}
