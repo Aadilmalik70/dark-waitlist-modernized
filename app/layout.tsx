@@ -15,7 +15,7 @@ const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-EXAMPL
 
 export const metadata: Metadata = {
   title: {
-    default: 'SERP Strategist | Agentic AI Content Blueprints for Search Dominance',
+    default: 'SERP Strategist',
     template: '%s | SERP Strategist'
   },
   description: 'Go beyond keywords with innovative AI agents that perform deep competitive research and generate unparalleled content blueprints to outrank your competition.',
