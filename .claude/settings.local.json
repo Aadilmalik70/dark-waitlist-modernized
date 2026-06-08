@@ -16,7 +16,14 @@
       "Bash(curl:*)",
       "Bash(pkill:*)",
       "mcp__sequential-thinking__sequentialthinking",
-      "WebFetch(domain:www.semrush.com)"
+      "WebFetch(domain:www.semrush.com)",
+      "mcp__playwright__browser_navigate",
+      "mcp__playwright__browser_click",
+      "mcp__playwright__browser_close",
+      "mcp__aceternityui__get_all_components",
+      "mcp__aceternityui__list_categories",
+      "Bash(taskkill:*)",
+      "Bash(rd:*)"
     ],
     "deny": []
   }

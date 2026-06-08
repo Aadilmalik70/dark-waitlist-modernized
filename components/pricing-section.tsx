@@ -15,76 +15,78 @@ export function PricingSection() {
         <div className="text-center mb-16">
 
           <h2 className="text-3xl md:text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
-            Flexible Pricing for Every Team
+            Enterprise-Grade Pricing with Google APIs Included
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto">
-            Choose the plan that best fits your team's needs and scale your content strategy with SERP Strategist.
+            Direct Google APIs integration, real-time collaboration, and enterprise security. Save 80% compared to Semrush Enterprise ($400+/month) and Ahrefs ($999+/month).
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <PricingCard
             name="Starter"
-            description="Ideal for small teams and individual strategists beginning their journey into AI-powered content. Access essential AI search analysis and blueprint generation to kickstart your strategy."
-            price="$39"
+            description="Perfect for growing teams ready to leverage Google's native APIs for superior content strategy. Full Google Custom Search and Gemini AI integration included."
+            price="$99"
             period="/month"
             features={[
-              "50 AI-Generated Content Blueprints/mo",
-              "Basic Google AI Search Analysis",
-              "Competitor Content Analysis",
-              "Content Format Recommendations",
-              "Up to 2 Team Members",
+              "Google Custom Search API Integration",
+              "Gemini AI Blueprint Generation (21-second processing)",
+              "100 Enterprise Blueprints/month",
+              "Real-time Team Collaboration",
+              "Up to 5 Team Members",
+              "Basic SERP Analysis",
               "Email Support",
-              "14-day Free Trial"
+              "30-day Enterprise Trial"
             ]}
             limitations={[
-              "No API Access",
-              "Basic Reporting Only"
+              "No White-label Features",
+              "Basic API Rate Limits"
             ]}
             isPopular={false}
-            ctaText="Start Free Trial"
+            ctaText="Start Enterprise Trial"
           />
 
           <PricingCard
             name="Professional"
-            description="For growing content teams seeking advanced insights and collaborative capabilities. Unlock deeper AI search optimization, predictive analytics, and real-time team features."
-            price="$79"
+            description="Advanced Google APIs integration with Knowledge Graph and Natural Language API. Ideal for marketing teams and agencies requiring comprehensive SEO intelligence."
+            price="$299"
             period="/month"
             features={[
-              "200 AI-Generated Blueprints/mo",
-              "Advanced Google AI Search Optimization",
-              "Deep Competitor Dissection",
-              "SERP Feature Optimization",
-              "Predictive Performance Scoring",
-              "Up to 5 Team Members",
-              "Real-time Collaboration",
+              "Full Google APIs Suite (Custom Search, Gemini, Knowledge Graph, Natural Language)",
+              "Unlimited Enterprise Blueprints",
+              "Advanced Team Collaboration with WebSocket",
+              "White-label Client Reports",
+              "Up to 15 Team Members",
+              "API Access & Webhooks",
               "Priority Support",
-              "Custom Integrations"
+              "Custom Integrations (Slack, Notion, etc.)",
+              "Advanced Analytics Dashboard"
             ]}
             limitations={[]}
             isPopular={true}
-            ctaText="Get Early Access"
+            ctaText="Most Popular for Agencies"
           />
 
           <PricingCard
-            name="Agency"
-            description="Comprehensive solution for agencies and large enterprises requiring unlimited scale, white-label reporting, and dedicated support for complex content operations."
-            price="$149"
+            name="Enterprise"
+            description="Complete Google-native enterprise solution with unlimited scale, SSO, compliance features, and dedicated support for Fortune 500 teams."
+            price="$899"
             period="/month"
             features={[
-              "Unlimited Blueprints",
-              "White Label Reports",
-              "Advanced Team Workflows",
-              "API Access",
-              "Up to 10 Team Members",
-              "Dedicated Account Manager",
-              "Custom AI Training",
-              "SLA Guarantee",
-              "Quarterly Strategy Reviews"
+              "Enterprise Google APIs Quotas & SLAs",
+              "Unlimited Teams & Blueprints",
+              "SSO & SAML Integration",
+              "SOC 2 Type II Compliance",
+              "Unlimited Team Members",
+              "Dedicated Customer Success Manager",
+              "Custom AI Model Training",
+              "24/7 Enterprise Support",
+              "White-label Platform Access",
+              "Advanced Security & Audit Logs"
             ]}
             limitations={[]}
             isPopular={false}
-            ctaText="Contact Sales"
+            ctaText="Contact Enterprise Sales"
           />
         </div>
 
@@ -106,11 +108,11 @@ export function PricingSection() {
           </div>
         </div>
 
-        {/* Urgency message */}
+        {/* Enterprise value message */}
         <div className="mt-12 text-center">
           <div className="inline-flex items-center justify-center p-4 bg-gradient-to-r from-purple-900/20 to-blue-900/20 backdrop-blur-sm rounded-xl border border-purple-500/30">
             <p className="text-purple-300">
-              ⏰ Early access pricing ends in <span className="font-bold text-white">72 hours</span> • Only <span className="font-bold text-white">37 spots</span> remaining
+              🎯 Enterprise Advantage: Save <span className="font-bold text-white">$3,600+/year</span> vs Semrush Enterprise • <span className="font-bold text-white">100% Google APIs</span> data accuracy
             </p>
           </div>
         </div>

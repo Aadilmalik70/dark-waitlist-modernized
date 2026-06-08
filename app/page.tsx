@@ -1,29 +1,27 @@
-import { WaitlistSection } from "@/components/waitlist-section"
-import { Header } from "@/components/header"
-import { Footer } from "@/components/footer"
-import { HeroSection } from "@/components/hero-section"
-import { FeaturesSection } from "@/components/features-section"
-import { HowItWorksSection } from "@/components/how-it-works-section"
-import { TestimonialsSection } from "@/components/testimonials-section"
-import { PricingSection } from "@/components/pricing-section"
-import { FaqSection } from "@/components/faq-section"
-import { ScrollToSection } from "@/components/scroll-to-section"
+import { HeaderModernAI } from "@/components/header-modern-ai"
+import { FooterLight } from "@/components/footer-light"
+import HeroSectionFixed from "@/components/hero-section-fixed"
+import { HowItWorksModernAI } from "@/components/how-it-works-modern-ai"
+import { SocialProofModernAI } from "@/components/social-proof-modern-ai"
+import { CompetitiveComparisonSection } from "@/components/competitive-comparison-section"
+import FeaturesSectionSimple from "@/components/features-section-simple"
+import { PricingFixed } from "@/components/pricing-fixed"
+import { WaitlistModernAI } from "@/components/waitlist-modern-ai"
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-100">
-      <ScrollToSection />
-      <Header />
+    <div className="min-h-screen bg-white text-slate-900">
+      <HeaderModernAI />
       <main>
-        <HeroSection />
-        <FeaturesSection />
-        <HowItWorksSection />
-        <TestimonialsSection />
-        <PricingSection />
-        <FaqSection />
-        <WaitlistSection />
+        <HeroSectionFixed />
+        <HowItWorksModernAI />
+        <SocialProofModernAI />
+        <FeaturesSectionSimple />
+        <CompetitiveComparisonSection />
+        <PricingFixed />
+        <WaitlistModernAI />
       </main>
-      <Footer />
+      <FooterLight />
     </div>
   )
 }

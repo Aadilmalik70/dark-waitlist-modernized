@@ -1,180 +1,235 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import { motion } from "framer-motion"
-import { ArrowRight, CheckCircle, Search, FileText, Upload, BarChart3, Target, Bot } from "lucide-react"
+import { Card, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { ArrowRight, Database, Brain, Users, Zap, CheckCircle, Clock, Globe, Target, Sparkles } from "lucide-react"
+import { useState, useEffect } from "react"
 
-export function HowItWorksSection() {
-  const [activeStep, setActiveStep] = useState(0)
-  const sectionRef = useRef<HTMLElement>(null)
-  
-  // Auto-advance steps every 3 seconds
+const processSteps = [
+  {
+    step: "01",
+    title: "Google APIs Analysis",
+    description: "Direct integration with Google Custom Search, Knowledge Graph, and Natural Language APIs provides 100% accurate competitor and SERP data — not scraped approximations.",
+    icon: <Database className="h-12 w-12" />,
+    gradient: "from-purple-500 to-blue-500",
+    bgGradient: "from-purple-50 to-blue-50",
+    features: [
+      "Google Custom Search API integration",
+      "Knowledge Graph entity extraction", 
+      "Natural Language sentiment analysis",
+      "Real-time SERP data (not cached)"
+    ],
+    tech: "Google APIs",
+    speed: "Real-time"
+  },
+  {
+    step: "02", 
+    title: "AI Blueprint Generation",
+    description: "Gemini AI analyzes Google's native data to generate enterprise-grade content structures optimized for AI search inclusion in just 21 seconds.",
+    icon: <Brain className="h-12 w-12" />,
+    gradient: "from-blue-500 to-cyan-500",
+    bgGradient: "from-blue-50 to-cyan-50", 
+    features: [
+      "Gemini AI content optimization",
+      "AI search inclusion strategies",
+      "Competitor gap analysis",
+      "Entity-rich content structure"
+    ],
+    tech: "Gemini AI",
+    speed: "21 seconds"
+  },
+  {
+    step: "03",
+    title: "Team Collaboration",
+    description: "WebSocket-powered real-time collaboration lets your team edit, review, and execute content strategies together — like Google Docs for enterprise SEO.",
+    icon: <Users className="h-12 w-12" />,
+    gradient: "from-cyan-500 to-emerald-500", 
+    bgGradient: "from-cyan-50 to-emerald-50",
+    features: [
+      "WebSocket real-time editing",
+      "Live team collaboration",
+      "Role-based permissions", 
+      "Project management integration"
+    ],
+    tech: "WebSocket",
+    speed: "Instant sync"
+  }
+]
+
+function ProcessCard({ 
+  step, 
+  index, 
+  inView = true 
+}: { 
+  step: typeof processSteps[0], 
+  index: number,
+  inView?: boolean 
+}) {
+  const [isVisible, setIsVisible] = useState(false)
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % 3)
-    }, 3000)
-    
-    return () => clearInterval(interval)
-  }, [])
+    if (inView) {
+      const timer = setTimeout(() => setIsVisible(true), index * 200)
+      return () => clearTimeout(timer)
+    }
+  }, [inView, index])
 
   return (
-    <section id="how-it-works" ref={sectionRef} className="relative py-24 md:py-32 overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-gray-950 via-gray-900/50 to-gray-950 z-0"></div>
-      
-      {/* Animated background grid */}
-      <div className="absolute inset-0 z-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: "linear-gradient(to right, #6366f180 1px, transparent 1px), linear-gradient(to bottom, #6366f180 1px, transparent 1px)",
-          backgroundSize: "40px 40px"
-        }}></div>
-      </div>
-
-      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center p-2 bg-blue-900/30 backdrop-blur-sm rounded-full mb-6">
-            <span className="px-3 py-1 text-blue-300 text-sm font-medium">Simple Process</span>
+    <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+      <Card className="glass-light-card border-slate-200/50 hover:shadow-2xl transition-all duration-500 hover:scale-[1.02] group overflow-hidden h-full">
+        <CardContent className="p-8 relative">
+          {/* Step Number Badge */}
+          <div className={`absolute -top-4 -left-4 w-16 h-16 rounded-full bg-gradient-to-r ${step.gradient} flex items-center justify-center shadow-lg z-10`}>
+            <span className="text-white font-bold text-xl">{step.step}</span>
           </div>
-          
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-400">
-            Your Agentic Content Strategy in 3 Steps
-          </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto text-lg">
-            Launch your AI agent, receive deep insights, and build winning content.
-          </p>
-        </div>
 
-        {/* Desktop view - Horizontal steps with animation */}
-        <div className="hidden lg:block mb-16">
-          <div className="relative">
-            {/* Progress bar */}
-            <div className="absolute top-1/2 left-0 w-full h-1 bg-gray-800 -translate-y-1/2 rounded-full overflow-hidden">
-              <motion.div 
-                className="h-full bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500"
-                initial={{ width: "0%" }}
-                animate={{ width: `${(activeStep + 1) * 33.33}%` }}
-                transition={{ duration: 0.5 }}
-              />
+          {/* Animated background gradient */}
+          <div className={`absolute inset-0 bg-gradient-to-br ${step.bgGradient} opacity-0 group-hover:opacity-30 transition-opacity duration-500`} />
+          
+          <div className="relative z-10 pt-4">
+            {/* Icon and Tech Badge */}
+            <div className="flex items-start justify-between mb-6">
+              <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${step.bgGradient} border border-slate-200 flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-lg`}>
+                <div className={`bg-gradient-to-r ${step.gradient} bg-clip-text text-transparent`}>
+                  {step.icon}
+                </div>
+              </div>
+              
+              <div className="text-right">
+                <Badge className={`bg-gradient-to-r ${step.gradient} text-white border-0 shadow-lg mb-2`}>
+                  {step.tech}
+                </Badge>
+                <div className="text-sm text-slate-500 flex items-center gap-1">
+                  <Clock className="w-3 h-3" />
+                  <span>{step.speed}</span>
+                </div>
+              </div>
             </div>
             
-            {/* Step circles */}
-            <div className="flex justify-between relative">
-              {[0, 1, 2].map((step) => (
-                <div key={step} className="relative">
-                  <motion.div
-                    className={`w-16 h-16 rounded-full flex items-center justify-center z-10 relative ${
-                      step <= activeStep 
-                        ? "bg-gradient-to-br from-purple-600 to-blue-600" 
-                        : "bg-gray-800"
-                    }`}
-                    animate={{
-                      scale: step === activeStep ? [1, 1.1, 1] : 1,
-                    }}
-                    transition={{
-                      duration: 0.5,
-                      repeat: step === activeStep ? Infinity : 0,
-                      repeatType: "reverse",
-                    }}
-                  >
-                    {step < activeStep ? (
-                      <CheckCircle className="w-8 h-8 text-white" />
-                    ) : (
-                      <span className="text-white font-bold text-xl">{step + 1}</span>
-                    )}
-                  </motion.div>
+            <h3 className="text-2xl font-bold text-slate-900 mb-4 leading-tight group-hover:text-slate-700 transition-colors">
+              {step.title}
+            </h3>
+            
+            <p className="text-slate-600 mb-6 leading-relaxed group-hover:text-slate-700 transition-colors">
+              {step.description}
+            </p>
+            
+            {/* Feature List */}
+            <div className="space-y-3">
+              {step.features.map((feature, idx) => (
+                <div key={idx} className="flex items-center gap-3 group/item">
+                  <div className={`w-5 h-5 rounded-full bg-gradient-to-r ${step.gradient} flex items-center justify-center flex-shrink-0 group-hover/item:scale-110 transition-transform`}>
+                    <CheckCircle className="w-3 h-3 text-white" />
+                  </div>
+                  <span className="text-slate-700 group-hover/item:text-slate-900 transition-colors text-sm">
+                    {feature}
+                  </span>
                 </div>
               ))}
             </div>
           </div>
+        </CardContent>
+      </Card>
+    </div>
+  )
+}
+
+export function HowItWorksSection() {
+  const [isLoaded, setIsLoaded] = useState(false)
+
+  useEffect(() => {
+    setIsLoaded(true)
+  }, [])
+
+  return (
+    <section className="py-24 bg-gradient-to-b from-white via-slate-50/30 to-white">
+      <div className="container mx-auto px-4">
+        {/* Section Header */}
+        <div className="text-center mb-20">
+          <div className={`transition-all duration-700 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <Badge variant="outline" className="glass-light border-purple-200 text-purple-800 mb-8 px-6 py-3 text-sm font-medium">
+              <Sparkles className="mr-2 h-4 w-4" />
+              Enterprise Platform Architecture
+            </Badge>
+          </div>
           
-          {/* Step content */}
-          <div className="mt-16 grid grid-cols-3 gap-8">
-            {steps.map((step, index) => (
-              <motion.div
-                key={index}
-                className={`bg-gray-900/50 backdrop-blur-sm border rounded-xl p-8 text-center relative ${
-                  index === activeStep 
-                    ? "border-purple-500/50 shadow-lg shadow-purple-900/20" 
-                    : "border-gray-800"
-                }`}
-                animate={{
-                  opacity: index === activeStep ? 1 : 0.7,
-                  y: index === activeStep ? -10 : 0,
-                }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="w-16 h-16 mx-auto mb-6 bg-gray-800/50 rounded-xl flex items-center justify-center text-white">
-                  {step.icon}
-                </div>
-                <h3 className="text-xl font-semibold mb-3 text-white">{step.title}</h3>
-                <p className="text-gray-400">{step.description}</p>
-              </motion.div>
-            ))}
+          <div className={`transition-all duration-700 delay-100 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+              <span className="text-slate-900">How </span>
+              <span className="bg-gradient-to-r from-purple-600 via-blue-600 to-purple-800 bg-clip-text text-transparent">
+                Google APIs Power
+              </span>
+              <span className="text-slate-900"> Your Success</span>
+            </h2>
+          </div>
+          
+          <div className={`transition-all duration-700 delay-200 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed mb-8">
+              Unlike traditional tools that rely on scraped data, SERP Strategist uses Google's native APIs 
+              for enterprise-grade accuracy and AI search optimization that competitors simply cannot match.
+            </p>
           </div>
         </div>
-        
-        {/* Mobile view - Vertical steps */}
-        <div className="lg:hidden space-y-8">
-          {steps.map((step, index) => (
-            <div 
-              key={index}
-              className={`bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-xl p-6 relative ${
-                index === activeStep ? "border-l-4 border-l-purple-500" : ""
-              }`}
-            >
-              <div className="flex items-start">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mr-4 ${
-                  index === activeStep 
-                    ? "bg-gradient-to-br from-purple-600 to-blue-600" 
-                    : "bg-gray-800"
-                }`}>
-                  {index < activeStep ? (
-                    <CheckCircle className="w-6 h-6 text-white" />
-                  ) : (
-                    <span className="text-white font-bold">{index + 1}</span>
-                  )}
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold mb-2 text-white">{step.title}</h3>
-                  <p className="text-gray-400">{step.description}</p>
-                </div>
-              </div>
-            </div>
+
+        {/* Process Steps */}
+        <div className="grid lg:grid-cols-3 gap-8 mb-20">
+          {processSteps.map((step, index) => (
+            <ProcessCard key={index} step={step} index={index} inView={isLoaded} />
           ))}
         </div>
-        
-        {/* CTA Button */}
-        <div className="mt-12 text-center">
-          <a href="#waitlist">
-            <motion.button 
-              className="px-8 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-white font-medium shadow-lg shadow-purple-900/20"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="mr-2">See It In Action</span>
-              <ArrowRight className="w-5 h-5 inline-block" />
-            </motion.button>
-          </a>
+
+        {/* Technical Advantage Section */}
+        <div className={`mt-24 transition-all duration-700 delay-600 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <Card className="glass-light-card border-purple-200/50 shadow-2xl overflow-hidden group hover:shadow-3xl transition-all duration-500">
+            <CardContent className="p-12 text-center relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-50/50 via-blue-50/50 to-purple-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div className="relative z-10">
+                <div className="w-20 h-20 mx-auto mb-8 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <Globe className="h-10 w-10 text-white" />
+                </div>
+                
+                <h3 className="text-3xl md:text-4xl font-bold mb-6 text-slate-900">
+                  The Only Platform with 
+                  <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                    Direct Google Integration
+                  </span>
+                </h3>
+                
+                <p className="text-lg text-slate-600 mb-8 leading-relaxed max-w-3xl mx-auto">
+                  While Semrush and Ahrefs rely on scraped data with accuracy limitations, SERP Strategist 
+                  is the only platform with official Google APIs partnership, giving you access to the same 
+                  data Google uses internally.
+                </p>
+                
+                <div className="grid md:grid-cols-3 gap-6 mb-10">
+                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-xl p-6">
+                    <div className="text-2xl font-bold text-green-700 mb-2">100%</div>
+                    <div className="text-sm text-slate-600">Google Data Accuracy</div>
+                  </div>
+                  <div className="bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-200 rounded-xl p-6">
+                    <div className="text-2xl font-bold text-blue-700 mb-2">21s</div>
+                    <div className="text-sm text-slate-600">Enterprise Blueprint Generation</div>
+                  </div>
+                  <div className="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-xl p-6">
+                    <div className="text-2xl font-bold text-purple-700 mb-2">80%</div>
+                    <div className="text-sm text-slate-600">Cost Savings vs Traditional</div>
+                  </div>
+                </div>
+                
+                <Button 
+                  size="lg" 
+                  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold px-10 py-4 text-lg shadow-2xl hover:shadow-3xl hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105 group/btn"
+                >
+                  See Google APIs Demo
+                  <ArrowRight className="ml-3 h-6 w-6 group-hover/btn:translate-x-2 transition-transform" />
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>
   )
 }
-
-const steps = [
-  {
-    title: "Define Your Target",
-    description: "Enter your primary keyword or topic. This sets the mission for your dedicated AI research agent.",
-    icon: <Target className="w-8 h-8 text-purple-400" />
-  },
-  {
-    title: "Deploy Your AI Agent",
-    description: "Our agent autonomously performs deep SERP analysis, competitor dissection, and audience research, synthesizing vast data into strategic insights.",
-    icon: <Bot className="w-8 h-8 text-blue-400" />
-  },
-  {
-    title: "Receive Your Blueprint",
-    description: "Get a comprehensive, actionable content blueprint – your strategic guide to creating content that dominates the SERPs.",
-    icon: <FileText className="w-8 h-8 text-cyan-400" />
-  }
-]

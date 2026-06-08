@@ -42,13 +42,24 @@ interface SanityBlogPostCardProps {
 }
 
 const SanityBlogPostCard: React.FC<SanityBlogPostCardProps> = ({ post }) => {
-  const formattedDate = post.publishedAt 
+  const formattedDate = post.publishedAt
     ? new Date(post.publishedAt).toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric'
       })
     : null;
+
+  // Debug log to check hydration mismatch
+  if (typeof window === 'undefined') {
+    // Server-side
+    // eslint-disable-next-line no-console
+    console.log('[SanityBlogPostCard][SSR] formattedDate:', formattedDate, 'post.publishedAt:', post.publishedAt);
+  } else {
+    // Client-side
+    // eslint-disable-next-line no-console
+    console.log('[SanityBlogPostCard][Client] formattedDate:', formattedDate, 'post.publishedAt:', post.publishedAt);
+  }
 
   return (
     <motion.div
