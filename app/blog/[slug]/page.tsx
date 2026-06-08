@@ -51,12 +51,12 @@ async function getPost(slug: string): Promise<SanityBlogPost | null> {
   }
 }
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+  const { slug } = params;
   const post = await getPost(slug);
 
   if (!post) {
-    notFound();
+    return notFound();
   }
 
   const formattedDate = post.publishedAt 
