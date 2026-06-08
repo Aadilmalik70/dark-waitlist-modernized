@@ -11,8 +11,7 @@ import {
   ArrowRight,
   Sparkles,
   Clock,
-  Eye,
-  TrendingUp
+  Eye
 } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 import { Input } from '../../components/ui/input';
@@ -62,12 +61,11 @@ export default function SanityBlogPage() {
   const fetchPosts = async () => {
     try {
       setLoading(true);
-      const data = await client.fetch(postsQuery);
+      const data = await client.fetch(postsQuery, { start: 0, end: 20 });
       setPosts(data || []);
     } catch (error) {
       console.error('Error fetching blog posts:', error);
-      // Fallback to sample data if Sanity isn't configured
-      setPosts(samplePosts);
+      setPosts([]);
     } finally {
       setLoading(false);
     }
@@ -168,34 +166,6 @@ export default function SanityBlogPage() {
           <Rss className="mr-2 h-5 w-5" />
           Subscribe for Updates
         </Button>
-        <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-800/50 px-8 py-3">
-          <TrendingUp className="mr-2 h-4 w-4" />
-          Explore Sample Posts
-        </Button>
-      </div>
-      
-      {/* Sample posts showcase */}
-      <div className="mt-16 space-y-8">
-        <div className="flex items-center justify-center mb-8">
-          <div className="h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent flex-1"></div>
-          <span className="px-6 text-lg font-medium text-purple-400 bg-gray-950">
-            Sample Posts Preview
-          </span>
-          <div className="h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent flex-1"></div>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {samplePosts.map((post, index) => (
-            <motion.div
-              key={post._id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-            >
-              <SanityBlogPostCard post={post} />
-            </motion.div>
-          ))}
-        </div>
       </div>
     </motion.div>
   );
@@ -268,7 +238,7 @@ export default function SanityBlogPage() {
           </motion.div>
 
           {/* Search Section */}
-          {(posts.length > 0 || samplePosts.length > 0) && (
+          {posts.length > 0 && (
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
