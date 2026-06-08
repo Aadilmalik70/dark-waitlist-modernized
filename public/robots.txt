@@ -4,9 +4,13 @@ Allow: /
 Disallow: /studio
 Disallow: /test-*
 Disallow: /api
+Disallow: /admin
 
 # Host
 Host: https://serpstrategist.com
+
+# Sitemap
+Sitemap: https://serpstrategist.com/sitemap.xml
 
 # Sitemaps
 Sitemap: https://serpstrategist.com/sitemap.xml

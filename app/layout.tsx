@@ -15,10 +15,10 @@ const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-EXAMPL
 
 export const metadata: Metadata = {
   title: {
-    default: 'SERP Strategist | Agentic AI Content Blueprints for Search Dominance',
+    default: 'SERP Strategist | AI Content Blueprints for SEO',
     template: '%s | SERP Strategist'
   },
-  description: 'Go beyond keywords with innovative AI agents that perform deep competitive research and generate unparalleled content blueprints to outrank your competition.',
+  description: 'Go beyond keywords with AI agents that perform deep competitive research, analyze SERPs, and generate data-driven content blueprints to outrank your competition and dominate search results.',
   keywords: [
     'SEO strategy',
     'content marketing', 
@@ -49,8 +49,8 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: process.env.SITE_URL || 'https://serpstrategist.com',
-    title: 'SERP Strategist | Agentic AI Content Blueprints for Search Dominance',
-    description: 'Go beyond keywords with innovative AI agents that perform deep competitive research and generate unparalleled content blueprints to outrank your competition.',
+    title: 'SERP Strategist | AI Content Blueprints for SEO',
+    description: 'Go beyond keywords with AI agents that perform deep competitive research, analyze SERPs, and generate data-driven content blueprints to outrank your competition and dominate search results.',
     siteName: 'SERP Strategist',
     images: [
       {
@@ -63,8 +63,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SERP Strategist | Agentic AI Content Blueprints for Search Dominance',
-    description: 'Go beyond keywords with innovative AI agents that perform deep competitive research and generate unparalleled content blueprints to outrank your competition.',
+    title: 'SERP Strategist | AI Content Blueprints for SEO',
+    description: 'Go beyond keywords with AI agents that perform deep competitive research, analyze SERPs, and generate data-driven content blueprints to outrank your competition and dominate search results.',
     site: '@serpstrategist',
     creator: '@serpstrategist',
     images: ['/og-image.jpg'],

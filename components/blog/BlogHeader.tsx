@@ -15,13 +15,15 @@ export const BlogHeader = () => {
             SERP Strategist Blog
           </Link>
           <div className="flex items-center gap-4">
-            <Button 
-              variant="outline" 
-              className="border-gray-700 hover:border-purple-500 transition-colors"
-            >
-              <Rss className="w-4 h-4 mr-2" />
-              Subscribe
-            </Button>
+            <Link href="/api/rss">
+              <Button 
+                variant="outline" 
+                className="border-gray-700 hover:border-purple-500 transition-colors"
+              >
+                <Rss className="w-4 h-4 mr-2" />
+                Subscribe
+              </Button>
+            </Link>
           </div>
         </nav>
       </div>

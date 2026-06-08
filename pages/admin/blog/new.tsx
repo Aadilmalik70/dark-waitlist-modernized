@@ -204,6 +204,7 @@ export default function NewPostPage() {
       <Head>
         <title>New Blog Post | SERP Strategist</title>
         <meta name="description" content="Create a new blog post" />
+        <meta name="robots" content="noindex, nofollow" />
         <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet" />
         <style jsx global>{`
           .ql-toolbar.ql-snow {

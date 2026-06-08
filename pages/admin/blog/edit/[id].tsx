@@ -124,8 +124,9 @@ export default function EditPostPage() {
   return (
     <>
       <Head>
-        <title>Edit Blog Post | Dark Waitlist</title>
+        <title>Edit Blog Post | SERP Strategist</title>
         <meta name="description" content="Edit an existing blog post" />
+        <meta name="robots" content="noindex, nofollow" />
       </Head>
 
       <div className="container py-12">

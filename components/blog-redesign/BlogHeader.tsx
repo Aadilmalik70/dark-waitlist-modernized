@@ -45,7 +45,7 @@ const BlogHeader: React.FC<BlogHeaderProps> = ({ isAdmin = false }) => {
           )}
           
           <Button variant="outline" className="border-gray-700 hover:border-purple-500 transition-colors">
-            <Link href="/rss" className="flex items-center">
+            <Link href="/api/rss" className="flex items-center">
               <RssIcon className="mr-2 h-4 w-4" />
               Subscribe
             </Link>

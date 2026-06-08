@@ -452,6 +452,7 @@ export default function BlogAdminPage() {
       <Head>
         <title>Blog Management | SERP Strategist</title>
         <meta name="description" content="Manage your blog posts and content" />
+        <meta name="robots" content="noindex, nofollow" />
       </Head>
 
       <div className="min-h-screen bg-gray-950 text-gray-100 relative overflow-hidden">

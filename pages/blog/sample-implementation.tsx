@@ -80,7 +80,7 @@ export default function BlogPostPage() {
     <>
       <Head>
         <title>{post.title} | SERP Strategist Blog</title>
-        <meta name="description" content={post.content.substring(0, 160)} />
+        <meta name="description" content={post.content.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim().substring(0, 155)} />
       </Head>
 
       <div className="min-h-screen bg-gray-950 text-gray-100">

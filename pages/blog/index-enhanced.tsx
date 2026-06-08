@@ -81,10 +81,10 @@ export default function BlogPage({
   return (
     <>
       <Head>
-        <title>Blog | SERP Strategist - SEO Strategies & Content Marketing Insights</title>
+        <title>SEO Blog & Content Strategy Insights | SERP Strategist</title>
         <meta 
           name="description" 
-          content="Discover proven SEO strategies, content marketing insights, and SERP optimization techniques. Expert guides, case studies, and actionable tips to dominate search results." 
+          content="Explore expert SEO strategies, content marketing tips, and SERP optimization guides. Actionable insights and case studies to boost your search rankings and organic traffic." 
         />
         <meta 
           name="keywords" 
@@ -94,8 +94,8 @@ export default function BlogPage({
         <meta name="robots" content="index, follow, max-image-preview:large" />
         
         {/* Open Graph */}
-        <meta property="og:title" content="Blog | SERP Strategist - SEO Strategies & Content Marketing" />
-        <meta property="og:description" content="Discover proven SEO strategies, content marketing insights, and SERP optimization techniques." />
+        <meta property="og:title" content="SEO Blog & Content Strategy Insights | SERP Strategist" />
+        <meta property="og:description" content="Explore expert SEO strategies, content marketing tips, and SERP optimization guides." />
         <meta property="og:image" content={ogImageUrl} />
         <meta property="og:url" content={pageUrl} />
         <meta property="og:type" content="website" />
@@ -103,8 +103,8 @@ export default function BlogPage({
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Blog | SERP Strategist - SEO Strategies & Content Marketing" />
-        <meta name="twitter:description" content="Discover proven SEO strategies, content marketing insights, and SERP optimization techniques." />
+        <meta name="twitter:title" content="SEO Blog & Content Strategy Insights | SERP Strategist" />
+        <meta name="twitter:description" content="Explore expert SEO strategies, content marketing tips, and SERP optimization guides." />
         <meta name="twitter:image" content={ogImageUrl} />
         <meta name="twitter:site" content="@serpstrategist" />
         

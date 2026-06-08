@@ -22,7 +22,7 @@ module.exports = {
   siteUrl: process.env.SITE_URL || 'https://serpstrategist.com',
   generateRobotsTxt: true,
   generateIndexSitemap: false,
-  exclude: ['/studio', '/studio/*', '/test-*'],
+  exclude: ['/studio', '/studio/*', '/test-*', '/admin', '/admin/*'],
   
   additionalPaths: async (config) => {
     if (!client) {
@@ -47,14 +47,6 @@ module.exports = {
         }
       `);
 
-      // Fetch all categories
-      const categories = await client.fetch(`
-        *[_type == "category"] {
-          slug,
-          _updatedAt
-        }
-      `);
-
       const blogPaths = posts.map((post) => ({
         loc: `/blog/${post.slug.current}`,
         lastmod: post._updatedAt,
@@ -62,18 +54,10 @@ module.exports = {
         changefreq: 'weekly'
       }));
 
-      const categoryPaths = categories.map((category) => ({
-        loc: `/blog/category/${category.slug.current}`,
-        lastmod: category._updatedAt,
-        priority: 0.6,
-        changefreq: 'monthly'
-      }));
-
-      console.log(`✅ Generated sitemap with ${posts.length} posts, ${categories.length} categories`)
+      console.log(`✅ Generated sitemap with ${posts.length} posts`)
 
       return [
         ...blogPaths,
-        ...categoryPaths,
         {
           loc: '/blog',
           lastmod: new Date().toISOString(),
@@ -99,7 +83,7 @@ module.exports = {
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/studio', '/test-*', '/api']
+        disallow: ['/studio', '/test-*', '/api', '/admin']
       }
     ],
     additionalSitemaps: [

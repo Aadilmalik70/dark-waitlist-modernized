@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { Metadata } from 'next';
 import { PortableText } from '@portabletext/react';
 import { client, postBySlugQuery } from '../../../lib/sanity';
 import { components } from '../../../lib/portableText';
@@ -49,6 +50,40 @@ async function getPost(slug: string): Promise<SanityBlogPost | null> {
     console.error('Error fetching post:', error);
     return null;
   }
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPost(slug);
+
+  if (!post) {
+    return {
+      title: 'Post Not Found',
+    };
+  }
+
+  const ogImage = post.mainImage?.asset?._ref
+    ? urlFor(post.mainImage).width(1200).height(630).url()
+    : '/og-image.jpg';
+
+  return {
+    title: post.title,
+    description: post.excerpt || `Read ${post.title} on the SERP Strategist blog.`,
+    openGraph: {
+      title: post.title,
+      description: post.excerpt || `Read ${post.title} on the SERP Strategist blog.`,
+      type: 'article',
+      publishedTime: post.publishedAt,
+      authors: post.author?.name ? [post.author.name] : undefined,
+      images: [{ url: ogImage, width: 1200, height: 630, alt: post.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.excerpt || `Read ${post.title} on the SERP Strategist blog.`,
+      images: [ogImage],
+    },
+  };
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
