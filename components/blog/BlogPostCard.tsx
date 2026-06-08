@@ -2,34 +2,12 @@ import Link from 'next/link';
 import { Badge } from '../ui/badge';
 import { Clock, Eye, ArrowRight } from 'lucide-react';
 import { urlFor } from '../../lib/sanity';
-
-interface BlogPost {
-  _id: string;
-  title: string;
-  slug: { current: string };
-  excerpt: string;
-  mainImage?: {
-    asset: any;
-    alt?: string;
-  };
-  author: {
-    name: string;
-    image?: {
-      asset: any;
-      alt?: string;
-    };
-  };
-  publishedAt: string;
-  categories?: Array<{
-    title: string;
-    color: string;
-  }>;
-  readingTime?: number;
-  featured?: boolean;
-}
+import { BlogPost } from '../../types/blog';
 
 interface BlogPostCardProps {
   post: BlogPost;
+  featured?: boolean;
+  layout?: 'grid' | 'list';
 }
 
 export const BlogPostCard = ({ post }: BlogPostCardProps) => {

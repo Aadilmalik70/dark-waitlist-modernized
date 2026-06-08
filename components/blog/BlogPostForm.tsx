@@ -37,7 +37,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 interface BlogPostFormProps {
   onSave: (post: any) => void;
   onPublish: (post: any) => void;
-  initialData?: any;
+  initialData?: Record<string, any>;
 }
 
 const BlogPostForm: React.FC<BlogPostFormProps> = ({ 
@@ -59,7 +59,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
     publishDate: ''
   } 
 }) => {
-  const [post, setPost] = useState(initialData);
+  const [post, setPost] = useState<Record<string, any>>(initialData);
   const [activeTab, setActiveTab] = useState('content');
   const [isSaving, setIsSaving] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
@@ -92,7 +92,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
 
   // Calculate word count and read time
   useEffect(() => {
-    const words = post.content.trim().split(/\s+/).filter(word => word?.length > 0)?.length;
+    const words = post.content.trim().split(/\s+/).filter((word: string) => word?.length > 0)?.length;
     setWordCount(words);
     setReadTime(Math.ceil(words / 200)); // Assuming 200 words per minute
   }, [post.content]);

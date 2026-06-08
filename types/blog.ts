@@ -19,8 +19,8 @@ export interface BlogPost {
     keywords?: string[];
   };
   readingTime?: number;
-  _createdAt: string;
-  _updatedAt: string;
+  _createdAt?: string;
+  _updatedAt?: string;
 }
 
 export interface Category {

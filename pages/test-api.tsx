@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useState } from 'react';
 
 export default function TestApiPage() {
-    const [result, setResult] = useState(null);
+    const [result, setResult] = useState<any>(null);
     const [loading, setLoading] = useState(false);
 
     const testCreatePost = async () => {
@@ -27,7 +27,7 @@ export default function TestApiPage() {
             const data = await response.json();
             console.log('API Response:', data);
             setResult(data);
-        } catch (error) {
+        } catch (error: any) {
             console.error('Error:', error);
             setResult({ error: error.message });
         } finally {

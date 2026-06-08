@@ -62,7 +62,7 @@ export function calculateReadingTime(content: any[]): number {
         .filter((child: any) => child._type === 'span')
         .map((child: any) => child.text)
         .join(' ')
-      return count + text.split(/\s+/).filter(word => word.length > 0).length
+      return count + text.split(/\s+/).filter((word: string) => word.length > 0).length
     }
     return count
   }, 0)
@@ -116,7 +116,7 @@ export function extractKeywords(content: any[], title: string): string[] {
     .toLowerCase()
     .replace(/[^\w\s]/g, ' ')
     .split(/\s+/)
-    .filter(word => word.length > 3 && !commonWords.has(word))
+    .filter((word: string) => word.length > 3 && !commonWords.has(word))
   
   const wordCount = words.reduce((count, word) => {
     count[word] = (count[word] || 0) + 1
@@ -208,8 +208,8 @@ export function logSchemaPerformance(schemaType: string, renderTime: number) {
   if (typeof window !== 'undefined') {
     // Use a microtask to ensure this runs after render, avoiding SSR issues
     setTimeout(() => {
-      if (window.gtag) {
-        window.gtag('event', 'schema_render', {
+      if ((window as any).gtag) {
+        (window as any).gtag('event', 'schema_render', {
           schema_type: schemaType,
           render_time: renderTime
         });

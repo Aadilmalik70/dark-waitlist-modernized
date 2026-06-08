@@ -1,7 +1,7 @@
 import { BlogPost } from '@/types/blog'
 
 interface BlogListSchemaProps {
-  posts: BlogPost[]
+  posts: Record<string, any>[]
   siteUrl: string
   currentPage?: number
   totalPages?: number
@@ -36,7 +36,7 @@ export function BlogListSchema({
           "headline": post.title,
           "description": post.excerpt,
           "url": `${siteUrl}/blog/${post.slug}`,
-          "image": post.featuredImage?.url,
+          "image": (post as any).featuredImage?.url || (post.mainImage as any)?.url,
           "datePublished": post.publishedAt,
           "author": {
             "@type": "Person",

@@ -60,7 +60,7 @@ export default function BlogPage({
   });
 
   const hasContent = posts.length > 0;
-  const siteUrl = DEFAULT_SEO_CONFIG.url;
+  const siteUrl = DEFAULT_SEO_CONFIG.siteUrl;
   const pageUrl = generateCanonicalUrl('/blog', siteUrl);
   const ogImageUrl = generateOGImageUrl(
     'SERP Strategist Blog',
@@ -111,8 +111,8 @@ export default function BlogPage({
         {/* Schema Markup */}
         <WebsiteSchema 
           siteUrl={siteUrl}
-          siteName={DEFAULT_SEO_CONFIG.name}
-          description={DEFAULT_SEO_CONFIG.description}
+          siteName={DEFAULT_SEO_CONFIG.siteName}
+          description={'Latest strategies and insights for search engine optimization and content marketing'}
         />
         
         <BlogListSchema 

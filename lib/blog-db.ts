@@ -50,7 +50,7 @@ export async function getConnection() {
     });
     
     return await mysql.createConnection(dbConfig);
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error connecting to database:', error);
     // More detailed error message with troubleshooting guidance
     const errorMessage = `Database connection failed: ${error.message}. 

@@ -1,8 +1,8 @@
 import { BlogPost, Author } from '@/types/blog'
 
 interface BlogPostSchemaProps {
-  post: BlogPost
-  author: Author
+  post: Record<string, any>
+  author: Record<string, any>
   siteUrl: string
 }
 
@@ -15,17 +15,17 @@ export function BlogPostSchema({ post, author, siteUrl }: BlogPostSchemaProps) {
     "description": post.excerpt,
     "image": {
       "@type": "ImageObject",
-      "url": post.featuredImage?.url || `${siteUrl}/default-blog-image.jpg`,
-      "width": post.featuredImage?.width || 1200,
-      "height": post.featuredImage?.height || 630
+      "url": (post.featuredImage as any)?.url || `${siteUrl}/default-blog-image.jpg`,
+      "width": (post.featuredImage as any)?.width || 1200,
+      "height": (post.featuredImage as any)?.height || 630
     },
     "author": {
       "@type": "Person",
       "name": author.name,
-      "image": author.image?.url,
+      "image": (author.image as any)?.url,
       "url": `${siteUrl}/authors/${author.slug}`,
       "jobTitle": author.bio,
-      "sameAs": author.socialLinks?.filter(link => link.url) || []
+      "sameAs": Object.values(author.socialLinks || {}).filter(Boolean) || []
     },
     "publisher": {
       "@type": "Organization",
@@ -70,7 +70,7 @@ function estimateWordCount(content: any[]): number {
         .filter((child: any) => child._type === 'span')
         .map((child: any) => child.text)
         .join(' ')
-      return count + text.split(/\s+/).filter(word => word.length > 0).length
+      return count + text.split(/\s+/).filter((word: string) => word.length > 0).length
     }
     return count
   }, 0)

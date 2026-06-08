@@ -49,8 +49,8 @@ export default function NewPostPage() {
     excerpt: '',
     content: '',
     featuredImage: '',
-    categories: [],
-    tags: [],
+    categories: [] as string[],
+    tags: [] as string[],
     seo: {
       title: '',
       description: '',
@@ -185,7 +185,7 @@ export default function NewPostPage() {
   // Calculate word count from HTML content
   const getWordCount = (htmlContent: string) => {
     const text = htmlContent.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ');
-    return text.trim().split(/\s+/).filter(word => word.length > 0).length;
+    return text.trim().split(/\s+/).filter((word: string) => word.length > 0).length;
   };
 
   const wordCount = getWordCount(post.content);

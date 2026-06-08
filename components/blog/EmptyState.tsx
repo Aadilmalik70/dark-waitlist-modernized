@@ -7,25 +7,10 @@ import {
   Sparkles,
   TrendingUp
 } from 'lucide-react';
-
-interface BlogPost {
-  id: string;
-  title: string;
-  slug: string;
-  excerpt: string;
-  featuredImage?: string;
-  author: {
-    name: string;
-    avatar?: string;
-  };
-  publishedAt: string;
-  categories?: string[];
-  readTime?: number;
-  views?: number;
-}
+import { BlogPost } from '../../types/blog';
 
 interface EmptyStateProps {
-  samplePosts: BlogPost[];
+  samplePosts?: BlogPost[];
 }
 
 export const EmptyState = ({ samplePosts }: EmptyStateProps) => (
@@ -76,9 +61,9 @@ export const EmptyState = ({ samplePosts }: EmptyStateProps) => (
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {samplePosts.map((post, index) => (
+        {samplePosts?.map((post, index) => (
           <motion.div
-            key={post.id}
+            key={post._id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}

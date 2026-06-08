@@ -7,6 +7,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import RichTextEditor from './RichTextEditor';
 import { Switch } from '../ui/switch';
+import { Badge } from '../ui/badge';
 import { 
   Upload, 
   Save, 
@@ -21,10 +22,25 @@ import {
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+interface BlogPostData {
+  title: string;
+  excerpt: string;
+  content: string;
+  featuredImage: string;
+  categories: string[];
+  tags: string[];
+  seo: {
+    title: string;
+    description: string;
+    keywords: string;
+  };
+  [key: string]: any;
+}
+
 interface BlogPostFormProps {
-  onSave: (post: any) => void;
-  onPublish: (post: any) => void;
-  initialData?: any;
+  onSave: (post: BlogPostData) => void;
+  onPublish: (post: BlogPostData) => void;
+  initialData?: BlogPostData;
 }
 
 const BlogPostForm: React.FC<BlogPostFormProps> = ({ 
@@ -44,7 +60,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
     }
   } 
 }) => {
-  const [post, setPost] = useState(initialData);
+  const [post, setPost] = useState<BlogPostData>(initialData);
   const [activeTab, setActiveTab] = useState('content');
   const [isSaving, setIsSaving] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
@@ -242,7 +258,7 @@ const BlogPostForm: React.FC<BlogPostFormProps> = ({
                 <TabsContent value="content" className="p-6 m-0">
                   <RichTextEditor 
                     content={post.content} 
-                    onChange={(content) => handleChange('content', content)} 
+                    onChange={(content: string) => handleChange('content', content)} 
                   />
                 </TabsContent>
                 

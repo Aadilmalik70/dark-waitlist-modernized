@@ -8,9 +8,9 @@ export default function EditPostPage() {
   const router = useRouter();
   const { id } = router.query;
   
-  const [post, setPost] = useState(null);
+  const [post, setPost] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     if (id) {
@@ -37,7 +37,7 @@ export default function EditPostPage() {
     }
   };
 
-  const handleSave = async (updatedPost) => {
+  const handleSave = async (updatedPost: any) => {
     try {
       setIsLoading(true);
       const response = await fetch(`/api/blog/posts/${id}`, {
@@ -63,7 +63,7 @@ export default function EditPostPage() {
     }
   };
 
-  const handlePublish = async (updatedPost) => {
+  const handlePublish = async (updatedPost: any) => {
     try {
       setIsLoading(true);
       // First update the post

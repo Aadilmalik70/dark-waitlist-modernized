@@ -1,8 +1,8 @@
 import { Author, BlogPost } from '@/types/blog'
 
 interface AuthorSchemaProps {
-  author: Author
-  posts: BlogPost[]
+  author: Record<string, any>
+  posts: Record<string, any>[]
   siteUrl: string
 }
 
@@ -15,9 +15,9 @@ export function AuthorSchema({ author, posts, siteUrl }: AuthorSchemaProps) {
     "description": author.bio,
     "image": {
       "@type": "ImageObject",
-      "url": author.image?.url,
-      "width": author.image?.width || 300,
-      "height": author.image?.height || 300
+      "url": (author.image as any)?.url,
+      "width": (author.image as any)?.width || 300,
+      "height": (author.image as any)?.height || 300
     },
     "url": `${siteUrl}/authors/${author.slug}`,
     "jobTitle": "SEO Strategist & Content Marketing Expert",
@@ -26,7 +26,7 @@ export function AuthorSchema({ author, posts, siteUrl }: AuthorSchemaProps) {
       "name": "SERP Strategist",
       "url": siteUrl
     },
-    "sameAs": author.socialLinks?.filter(link => link.url).map(link => link.url) || [],
+    "sameAs": Object.values(author.socialLinks || {}).filter(Boolean) || [],
     "mainEntityOfPage": {
       "@type": "ProfilePage",
       "@id": `${siteUrl}/authors/${author.slug}`,
@@ -57,7 +57,7 @@ export function AuthorSchema({ author, posts, siteUrl }: AuthorSchemaProps) {
 
   // Add authored works if posts exist
   if (posts && posts.length > 0) {
-    schema.mainEntityOfPage = {
+    (schema as any).mainEntityOfPage = {
       ...schema.mainEntityOfPage,
       "author": posts.map(post => ({
         "@type": "BlogPosting",

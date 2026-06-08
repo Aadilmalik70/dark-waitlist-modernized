@@ -21,14 +21,14 @@ import {
   Strikethrough,
   Type
 } from 'lucide-react';
-import { useEditor, EditorContent } from '@tiptap/react';
+import { useEditor, EditorContent, Editor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Link from '@tiptap/extension-link';
 import Placeholder from '@tiptap/extension-placeholder';
 import TiptapImage from '@tiptap/extension-image';
 import { motion } from 'framer-motion';
 
-const MenuBar = ({ editor }) => {
+const MenuBar = ({ editor }: { editor: Editor | null }) => {
   if (!editor) {
     return null;
   }
@@ -80,7 +80,7 @@ const MenuBar = ({ editor }) => {
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => editor.chain().focus().toggleUnderline().run()}
+          onClick={() => (editor.chain().focus() as any).toggleUnderline().run()}
           className={`h-9 px-2.5 ${editor.isActive('underline') ? 'bg-gray-700 text-purple-400' : 'text-gray-300 hover:text-white'}`}
           title="Underline"
         >
@@ -179,7 +179,7 @@ const MenuBar = ({ editor }) => {
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => editor.chain().focus().setTextAlign('left').run()}
+          onClick={() => (editor.chain().focus() as any).setTextAlign('left').run()}
           className={`h-9 px-2.5 ${editor.isActive({ textAlign: 'left' }) ? 'bg-gray-700 text-purple-400' : 'text-gray-300 hover:text-white'}`}
           title="Align Left"
         >
@@ -188,7 +188,7 @@ const MenuBar = ({ editor }) => {
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => editor.chain().focus().setTextAlign('center').run()}
+          onClick={() => (editor.chain().focus() as any).setTextAlign('center').run()}
           className={`h-9 px-2.5 ${editor.isActive({ textAlign: 'center' }) ? 'bg-gray-700 text-purple-400' : 'text-gray-300 hover:text-white'}`}
           title="Align Center"
         >
@@ -197,7 +197,7 @@ const MenuBar = ({ editor }) => {
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => editor.chain().focus().setTextAlign('right').run()}
+          onClick={() => (editor.chain().focus() as any).setTextAlign('right').run()}
           className={`h-9 px-2.5 ${editor.isActive({ textAlign: 'right' }) ? 'bg-gray-700 text-purple-400' : 'text-gray-300 hover:text-white'}`}
           title="Align Right"
         >
@@ -229,7 +229,7 @@ const MenuBar = ({ editor }) => {
   );
 };
 
-const RichTextEditor = ({ content, onChange }) => {
+const RichTextEditor = ({ content, onChange }: { content: string; onChange: (value: string) => void }) => {
   const [isMounted, setIsMounted] = useState(false);
   
   useEffect(() => {
